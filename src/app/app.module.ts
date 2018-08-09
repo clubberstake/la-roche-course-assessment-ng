@@ -8,6 +8,11 @@ import { AppComponent } from './app.component';
 import { LayoutComponent } from './ui/layout/layout.component';
 import { HeaderComponent } from './ui/header/header.component';
 import { FooterComponent } from './ui/footer/footer.component';
+import { IndividualLearningRecordComponent } from './individual-learning-record/individual-learning-record.component';
+import { CourseAssessmentWorksheetComponent } from './course-assessment-worksheet/course-assessment-worksheet.component';
+import { AppRoutingModule } from './/app-routing.module';
+import { SiteAdminComponent } from './site-admin/site-admin.component';
+import { CourseArchiveComponent } from './course-archive/course-archive.component';
 
 @NgModule({
   declarations: [
@@ -15,9 +20,13 @@ import { FooterComponent } from './ui/footer/footer.component';
     LayoutComponent,
     HeaderComponent,
     FooterComponent,
+    IndividualLearningRecordComponent,
+    CourseAssessmentWorksheetComponent,
+    SiteAdminComponent,
+    CourseArchiveComponent,
   ],
   imports: [
-    BrowserModule, HttpClientModule, HttpModule, FormsModule
+    BrowserModule, HttpClientModule, HttpModule, FormsModule, AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
