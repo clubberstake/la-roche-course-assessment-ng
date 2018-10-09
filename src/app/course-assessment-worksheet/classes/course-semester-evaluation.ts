@@ -3,10 +3,8 @@ export class CourseSemesterEvaluation {
 }
 
 export class SemesterReview {
-    constructor(studentId: Number, studentName: String, midSemesterLearningIssues: SemesterLearningIssues,
-        endSemesterLearningIssues: SemesterLearningIssues, midSemesterInstructorInteractions: String,
-        endSemesterInstructorInteractions: String, midSemesterInstructorNotes: String,
-        endSemesterInstructorNotes: String) { }
+    constructor(studentId: Number, studentName: String, semesterLearningIssues: SemesterLearningIssues,
+        semesterInstructorInteractions: String, semesterInstructorNotes: String) { }
 }
 
 export class SemesterLearningIssues {

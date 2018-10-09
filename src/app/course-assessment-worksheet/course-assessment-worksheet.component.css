@@ -1,0 +1,109 @@
+.courseAssessmentWorksheetContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.courseInfoAndChangesFlexboxRootContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.itemContainer {
+  display: flex;
+  flex-direction: column;
+  border: 3px solid #000;
+  margin-left: 5px;
+  margin-right: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.paddedLabel {
+  width: 200px;
+}
+
+.input {
+  width: 725px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+}
+
+.inputCheckmark {
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  margin-left: 50px;
+}
+
+.title {
+  font-weight: bolder;
+}
+
+.gradesContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.gradeContainer {
+  display: flex;
+  flex-direction: column;
+  border: 3px solid #000;
+  margin-left: 5px;
+  margin-right: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.gradeLetter {
+  border-bottom: 3px solid #000;
+  margin-bottom: 10px;
+  font-weight: bold;
+  padding: 10px 50px 10px 50px;
+  background-color: #831917;
+  color: #eee;
+}
+
+.gradeCount {
+  padding: 5px 50px 10px 50px;
+}
+
+.semesterReviewsContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.semesterReviewContainer {
+  display: flex;
+  flex-direction: column;
+  border: 3px solid #000;
+  /* border-radius: 5px; */
+}
+
+.semesterReviewHeader {
+  border-bottom: 3px solid #000;
+  font-weight: bold;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  background-color: #831917;
+  color: #eee;
+}
+
+.midSemesterReviewTextArea {
+  width: 259px;
+}
+
+.endSemesterReviewTextArea {
+  width: 223px;
+}
+
+.semesterReviewSelector {
+  width: 67px;
+}
+
+.marginBottom {
+  margin-bottom: 50px;
+}

@@ -1,3 +1,171 @@
-<p>
-  course-assessment-worksheet works!
-</p>
+<div class="courseAssessmentWorksheetContainer">
+  <div class="courseInfoAndChangesFlexboxRootContainer">
+    <div class="itemContainer">
+      <span class="title">Course Information</span>
+      <div>
+        <label class="paddedLabel">Course #/Sec:</label>
+        <span>{{courseAssessment.courseInformation.courseNumber}} / {{courseAssessment.courseInformation.section}}</span>
+      </div>
+      <div>
+        <label class="paddedLabel">Semester:</label>
+        <span>{{courseAssessment.courseInformation.semester}}</span>
+      </div>
+      <div>
+        <label class="paddedLabel">Course Title:</label>
+        <span>{{courseAssessment.courseInformation.courseTitle}}</span>
+      </div>
+      <div>
+        <label class="paddedLabel">Instructor:</label>
+        <span>{{courseAssessment.courseInformation.instructorName}}</span>
+      </div>
+    </div>
+    <div class="itemContainer">
+      <span class="title">SLO's Addressed in this semester</span>
+      <div>
+        <label class="paddedLabel">#1 Knowledge Base</label>
+        <input class="inputCheckmark" #knowledgeBaseCheckBox id="knowledgeBaseCheckBox" type="checkbox" (change)="knowledgeBaseChecked(knowledgeBaseCheckBox.checked)"
+          [(ngModel)]="courseAssessment.courseSLOs.slo1" ng-true-value="'true'" ng-false-value="'false'">
+      </div>
+      <div>
+        <label class="paddedLabel">#2 Lab Skills</label>
+        <input class="inputCheckmark" #labSkillsCheckBox id="labSkillsCheckBox" type="checkbox" (change)="labSkillsChecked(labSkillsCheckBox.checked)"
+          [(ngModel)]="courseAssessment.courseSLOs.slo2" ng-true-value="'true'" ng-false-value="'false'">
+      </div>
+      <div>
+        <label class="paddedLabel">#3 Practice</label>
+        <input class="inputCheckmark" #practiceCheckBox id="practiceCheckBox" type="checkbox" (change)="practiceChecked(practiceCheckBox.checked)"
+          [(ngModel)]="courseAssessment.courseSLOs.slo3" ng-true-value="'true'" ng-false-value="'false'">
+      </div>
+      <div>
+        <label class="paddedLabel">#4 Societal Connects</label>
+        <input class="inputCheckmark" #societalConnectsCheckBox id="societalConnectsCheckBox" type="checkbox" (change)="societalConnectsChecked(societalConnectsCheckBox.checked)"
+          [(ngModel)]="courseAssessment.courseSLOs.slo4" ng-true-value="'true'" ng-false-value="'false'">
+      </div>
+      <div>
+        <label class="paddedLabel">#5 Capstone</label>
+        <input class="inputCheckmark" #capstoneCheckBox id="capstoneCheckBox" type="checkbox" (change)="capstoneChecked(capstoneCheckBox.checked)"
+          [(ngModel)]="courseAssessment.courseSLOs.slo5" ng-true-value="'true'" ng-false-value="'false'">
+      </div>
+    </div>
+  </div>
+  <div class="courseInfoAndChangesFlexboxRootContainer">
+    <div class="itemContainer">
+      <span class="title">I. Course Changes Implemented this Semester</span>
+      <div>
+        <span>span example:</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs1Info.newSLOs"></textarea>
+      </div>
+      <div>
+        <span>span example</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs1Info.newSLOs"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="courseInfoAndChangesFlexboxRootContainer">
+    <div class="itemContainer">
+      <span class="title">II. Student Performance Findings</span>
+      <div>
+        <span>span example</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs1Info.newSLOs"></textarea>
+      </div>
+      <div>
+        <span>span example</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs1Info.newSLOs"></textarea>
+      </div>
+      <div>
+        <span>Overall Student Performance</span><br>
+        <div class="gradesContainer">
+          <div class="gradeContainer">
+            <div class="gradeLetter">A</div>
+            <div class="gradeCount">10</div>
+          </div>
+          <div class="gradeContainer">
+            <div class="gradeLetter">B</div>
+            <div class="gradeCount">10</div>
+          </div>
+          <div class="gradeContainer">
+            <div class="gradeLetter">C</div>
+            <div class="gradeCount">10</div>
+          </div>
+          <div class="gradeContainer">
+            <div class="gradeLetter">D</div>
+            <div class="gradeCount">10</div>
+          </div>
+          <div class="gradeContainer">
+            <div class="gradeLetter">F</div>
+            <div class="gradeCount">10</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <span>span example</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs1Info.newSLOs"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="courseInfoAndChangesFlexboxRootContainer">
+    <div class="itemContainer">
+      <span class="title">III. Recommended changes to Implement for next offering</span>
+      <div>
+        <span>span example</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs1Info.newSLOs"></textarea>
+      </div>
+      <div>
+        <span>span example</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs1Info.newSLOs"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="courseInfoAndChangesFlexboxRootContainer">
+    <div class="itemContainer">
+      <span class="title">IV. Mid-Semester Individual Performance and evaluation</span>
+      <div class="semesterReviewsContainer">
+        <div class="semesterReviewContainer">
+          <div class="semesterReviewHeader">ID#</div>
+          <div class="semesterReviewSelector">10</div>
+        </div>
+        <div class="semesterReviewContainer">
+          <div class="semesterReviewHeader">Learning Issues</div>
+          <div class="semesterReviewSelector">10</div>
+        </div>
+        <div class="semesterReviewContainer">
+          <div class="semesterReviewHeader">Instructor Interaction</div>
+          <textarea class="midSemesterReviewTextArea"></textarea>
+        </div>
+        <div class="semesterReviewContainer">
+          <div class="semesterReviewHeader">Instructor Evaluation</div>
+          <textarea class="midSemesterReviewTextArea"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="courseInfoAndChangesFlexboxRootContainer">
+    <div class="itemContainer">
+      <span class="title">V. Summative Individual Performance and evaluation</span>
+      <div class="semesterReviewsContainer">
+        <div class="semesterReviewContainer">
+          <div class="semesterReviewHeader">ID#</div>
+          <div class="semesterReviewSelector">10</div>
+        </div>
+        <div class="semesterReviewContainer">
+          <div class="semesterReviewHeader">Grade</div>
+          <div class="semesterReviewSelector">10</div>
+        </div>
+        <div class="semesterReviewContainer">
+          <div class="semesterReviewHeader">Learning Issues</div>
+          <div class="semesterReviewSelector">10</div>
+        </div>
+        <div class="semesterReviewContainer">
+          <div class="semesterReviewHeader">Instructor Interaction</div>
+          <textarea class="endSemesterReviewTextArea"></textarea>
+        </div>
+        <div class="semesterReviewContainer">
+          <div class="semesterReviewHeader">Instructor Evaluation</div>
+          <textarea class="endSemesterReviewTextArea"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="marginBottom"></div>
+  <!--spacer for footer -->
+</div>
