@@ -3,12 +3,12 @@ export class CourseSemesterEvaluation {
 }
 
 export class SemesterReview {
-    constructor(studentId: Number, studentName: String, semesterLearningIssues: SemesterLearningIssues,
-        semesterInstructorInteractions: String, semesterInstructorNotes: String) { }
+    constructor(public studentId: Number, public grade: String, public studentName: String, public semesterLearningIssues: SemesterLearningIssues,
+        public semesterInstructorInteractions: String, public semesterInstructorNotes: String) { }
 }
 
 export class SemesterLearningIssues {
-    constructor(coursePace: Boolean, lackOfMindset: Boolean, lackOfCuriosity: Boolean,
-        lackOfEffortOrFocus: Boolean, poorTimeManagement: Boolean, healthIssues: Boolean,
-        complacence: Boolean, employmentHours: Boolean, other: Boolean) { }
+    constructor(public coursePace: Boolean, public lackOfMindset: Boolean, public lackOfCuriosity: Boolean,
+        public lackOfEffortOrFocus: Boolean, public poorTimeManagement: Boolean, public healthIssues: Boolean,
+        public complacence: Boolean, public employmentHours: Boolean, public other: Boolean) { }
 }

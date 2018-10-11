@@ -52,12 +52,24 @@
     <div class="itemContainer">
       <span class="title">I. Course Changes Implemented this Semester</span>
       <div>
-        <span>span example:</span><br>
+        <span>New SLO emphasis added:</span><br>
         <textarea class="input" [(ngModel)]="courseAssessment.cafs1Info.newSLOs"></textarea>
       </div>
       <div>
-        <span>span example</span><br>
-        <textarea class="input" [(ngModel)]="courseAssessment.cafs1Info.newSLOs"></textarea>
+        <span>Upgrades to course content:</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs1Info.upgrades"></textarea>
+      </div>
+      <div>
+        <span>Pedagogy enhancements:</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs1Info.enhancements"></textarea>
+      </div>
+      <div>
+        <span>Modifications to student assessment measures:</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs1Info.modifications"></textarea>
+      </div>
+      <div>
+        <span>Other course changes implemented this semester:</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs1Info.other"></textarea>
       </div>
     </div>
   </div>
@@ -65,41 +77,41 @@
     <div class="itemContainer">
       <span class="title">II. Student Performance Findings</span>
       <div>
-        <span>span example</span><br>
-        <textarea class="input" [(ngModel)]="courseAssessment.cafs1Info.newSLOs"></textarea>
+        <span>Chemistry concept carry-over from previous semesters, as demonstrated on pre-course assessment (if applicable):</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs2Info.chemConcept"></textarea>
       </div>
       <div>
-        <span>span example</span><br>
-        <textarea class="input" [(ngModel)]="courseAssessment.cafs1Info.newSLOs"></textarea>
+        <span>Were objectives and content describved in the Syllabuss completely covered this semester?</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs2Info.objectivesContent"></textarea>
       </div>
       <div>
         <span>Overall Student Performance</span><br>
         <div class="gradesContainer">
           <div class="gradeContainer">
             <div class="gradeLetter">A</div>
-            <div class="gradeCount">10</div>
+            <div class="gradeCount">{{courseAssessment.cafs2Info.percentA}}</div>
           </div>
           <div class="gradeContainer">
             <div class="gradeLetter">B</div>
-            <div class="gradeCount">10</div>
+            <div class="gradeCount">{{courseAssessment.cafs2Info.percentB}}</div>
           </div>
           <div class="gradeContainer">
             <div class="gradeLetter">C</div>
-            <div class="gradeCount">10</div>
+            <div class="gradeCount">{{courseAssessment.cafs2Info.percentC}}</div>
           </div>
           <div class="gradeContainer">
             <div class="gradeLetter">D</div>
-            <div class="gradeCount">10</div>
+            <div class="gradeCount">{{courseAssessment.cafs2Info.percentD}}</div>
           </div>
           <div class="gradeContainer">
             <div class="gradeLetter">F</div>
-            <div class="gradeCount">10</div>
+            <div class="gradeCount">{{courseAssessment.cafs2Info.percentF}}</div>
           </div>
         </div>
       </div>
       <div>
-        <span>span example</span><br>
-        <textarea class="input" [(ngModel)]="courseAssessment.cafs1Info.newSLOs"></textarea>
+        <span>General comments about student performance:</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs2Info.generalComments"></textarea>
       </div>
     </div>
   </div>
