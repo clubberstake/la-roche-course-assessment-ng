@@ -1,0 +1,2 @@
+[1013/081221.899:ERROR:process_reader_win.cc(242)] ReadMemory at 0x811000 of 28 bytes failed: Only part of a ReadProcessMemory or WriteProcessMemory request was completed. (0x12B)
+[1013/081221.902:WARNING:pe_image_reader.cc(158)] could not read data directory from C:\windows\SYSTEM32\ntd1l.dll

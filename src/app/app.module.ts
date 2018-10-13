@@ -13,6 +13,8 @@ import { CourseAssessmentWorksheetComponent } from './course-assessment-workshee
 import { AppRoutingModule } from './/app-routing.module';
 import { SiteAdminComponent } from './site-admin/site-admin.component';
 import { CourseArchiveComponent } from './course-archive/course-archive.component';
+import { MidSemesterModalComponent } from './course-assessment-worksheet/modals/mid-semester-modal/mid-semester-modal.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -24,9 +26,10 @@ import { CourseArchiveComponent } from './course-archive/course-archive.componen
     CourseAssessmentWorksheetComponent,
     SiteAdminComponent,
     CourseArchiveComponent,
+    MidSemesterModalComponent,
   ],
   imports: [
-    BrowserModule, HttpClientModule, HttpModule, FormsModule, AppRoutingModule
+    BrowserModule, HttpClientModule, HttpModule, FormsModule, AppRoutingModule, NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

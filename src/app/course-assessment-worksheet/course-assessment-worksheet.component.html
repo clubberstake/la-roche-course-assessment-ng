@@ -77,7 +77,8 @@
     <div class="itemContainer">
       <span class="title">II. Student Performance Findings</span>
       <div>
-        <span>Chemistry concept carry-over from previous semesters, as demonstrated on pre-course assessment (if applicable):</span><br>
+        <span>Chemistry concept carry-over from previous semesters, as demonstrated on pre-course <br> assessment (if
+          applicable):</span><br>
         <textarea class="input" [(ngModel)]="courseAssessment.cafs2Info.chemConcept"></textarea>
       </div>
       <div>
@@ -119,41 +120,75 @@
     <div class="itemContainer">
       <span class="title">III. Recommended changes to Implement for next offering</span>
       <div>
-        <span>span example</span><br>
-        <textarea class="input" [(ngModel)]="courseAssessment.cafs1Info.newSLOs"></textarea>
+        <span>Course prerequisites:</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs3Info.coursePreReq"></textarea>
       </div>
       <div>
-        <span>span example</span><br>
-        <textarea class="input" [(ngModel)]="courseAssessment.cafs1Info.newSLOs"></textarea>
+        <span>Textbooks/other required materials:</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs3Info.textbooks"></textarea>
+      </div>
+      <div>
+        <span>Student assessment measures:</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs3Info.studentAsse"></textarea>
+      </div>
+      <div>
+        <span>Pedagogy:</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs3Info.pedagogy"></textarea>
+      </div>
+      <div>
+        <span>Faculty/guest instructors:</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs3Info.faculty"></textarea>
+      </div>
+      <div>
+        <span>Minor and capital equipment needs:</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs3Info.minorCapitalEq"></textarea>
+      </div>
+      <div>
+        <span>Other recommendations:</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs3Info.other"></textarea>
       </div>
     </div>
   </div>
   <div class="courseInfoAndChangesFlexboxRootContainer">
     <div class="itemContainer">
-      <span class="title">IV. Mid-Semester Individual Performance and evaluation</span>
-      <div class="semesterReviewsContainer">
+      <div class="semesterReviewTitle">
+        <span class="semesterReviewTitleText">IV. Mid-Semester Individual Performance and evaluation</span>
+        <app-mid-semester-modal [midSemesterReview]="midSemesterReview" (midSemesterItemSaved)="onMidSemesterItemSaved($event)"></app-mid-semester-modal>
+      </div>
+      <div *ngIf="hasMidSemesterReviews()" class="semesterReviewsContainer">
         <div class="semesterReviewContainer">
           <div class="semesterReviewHeader">ID#</div>
-          <div class="semesterReviewSelector">10</div>
+          <div *ngFor="let review of courseAssessment.midSemesterReviews">
+            <div class="semesterReviewSelector">{{review.studentId}}</div>
+          </div>
         </div>
         <div class="semesterReviewContainer">
           <div class="semesterReviewHeader">Learning Issues</div>
-          <div class="semesterReviewSelector">10</div>
+          <div *ngFor="let review of courseAssessment.midSemesterReviews">
+            <div class="semesterReviewSelector">{{calculateSemesterLearningIssues(review.semesterLearningIssues)}}</div>
+          </div>
         </div>
         <div class="semesterReviewContainer">
           <div class="semesterReviewHeader">Instructor Interaction</div>
-          <textarea class="midSemesterReviewTextArea"></textarea>
+          <div *ngFor="let review of courseAssessment.midSemesterReviews">
+            <div class="midSemesterReviewTextArea">{{review.semesterInstructorInteractions}}</div>
+          </div>
         </div>
         <div class="semesterReviewContainer">
           <div class="semesterReviewHeader">Instructor Evaluation</div>
-          <textarea class="midSemesterReviewTextArea"></textarea>
+          <div *ngFor="let review of courseAssessment.midSemesterReviews">
+            <div class="midSemesterReviewTextArea">{{review.semesterInstructorNotes}}</div>
+          </div>
         </div>
+      </div>
+      <div *ngIf="!hasMidSemesterReviews()">
+        <span>Please click the "Add/Edit Mid-Semester Review" button above</span>
       </div>
     </div>
   </div>
   <div class="courseInfoAndChangesFlexboxRootContainer">
     <div class="itemContainer">
-      <span class="title">V. Summative Individual Performance and evaluation</span>
+      <span class="semesterReviewTitleText">V. Summative Individual Performance and evaluation</span>
       <div class="semesterReviewsContainer">
         <div class="semesterReviewContainer">
           <div class="semesterReviewHeader">ID#</div>

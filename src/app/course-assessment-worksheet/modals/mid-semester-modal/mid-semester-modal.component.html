@@ -1,0 +1,112 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add/Edit Mid-Semester Review
+    </h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="studentId">Student Id</label><br>
+        <input class="form-control" name="studentId" maxlength="7" [(ngModel)]="midSemesterReview.studentId">
+        <!-- <div class="input-group">
+          <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+          </div>
+        </div> -->
+      </div>
+      <div class="form-group">
+        <label for="studentName">Student Name</label><br>
+        <input class="form-control" name="studentName" [(ngModel)]="midSemesterReview.studentName">
+      </div>
+      <div class="learningIssuesContainer">
+        <div class="form-group">
+          <div class="learningIssuesItem">
+            <label class="paddedLabel">#1 Course Pace</label>
+            <input class="inputCheckmark" #coursePaceCheckBox id="coursePaceCheckBox" type="checkbox" (change)="coursePaceChecked(coursePaceCheckBox.checked)"
+              [(ngModel)]="midSemesterReview.semesterLearningIssues.coursePace" name="coursePace" ng-true-value="'true'"
+              ng-false-value="'false'">
+          </div>
+          <div class="learningIssuesItem">
+            <label class="paddedLabel">#2 Poor Background</label>
+            <input class="inputCheckmark" #poorBackgroundCheckBox id="poorBackgroundCheckBox" type="checkbox" (change)="poorBackgroundChecked(poorBackgroundCheckBox.checked)"
+              [(ngModel)]="midSemesterReview.semesterLearningIssues.poorBackground" name="poorBackground" ng-true-value="'true'"
+              ng-false-value="'false'">
+          </div>
+          <div class="learningIssuesItem">
+            <label class="paddedLabel">#3 Mindset</label>
+            <input class="inputCheckmark" #lackOfMindsetCheckBox id="lackOfMindsetCheckBox" type="checkbox" (change)="lackOfMindsetChecked(lackOfMindsetCheckBox.checked)"
+              [(ngModel)]="midSemesterReview.semesterLearningIssues.lackOfMindset" name="lackOfMindset" ng-true-value="'true'"
+              ng-false-value="'false'">
+          </div>
+          <div class="learningIssuesItem">
+            <label class="paddedLabel">#4 Interest/Curiosity</label>
+            <input class="inputCheckmark" #lackOfCuriosityCheckBox id="lackOfCuriosityCheckBox" type="checkbox"
+              (change)="lackOfCuriosityChecked(lackOfCuriosityCheckBox.checked)" [(ngModel)]="midSemesterReview.semesterLearningIssues.lackOfCuriosity"
+              name="lackOfCuriosity" ng-true-value="'true'" ng-false-value="'false'">
+          </div>
+          <div class="learningIssuesItem">
+            <label class="paddedLabel">#5 Effort/Focus</label>
+            <input class="inputCheckmark" #lackOfEffortOrFocusCheckBox id="lackOfEffortOrFocusCheckBox" type="checkbox"
+              (change)="lackOfEffortOrFocusChecked(lackOfEffortOrFocusCheckBox.checked)" [(ngModel)]="midSemesterReview.semesterLearningIssues.lackOfEffortOrFocus"
+              name="lackOfEffortOrFocus" ng-true-value="'true'" ng-false-value="'false'">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="learningIssuesItem">
+            <label class="paddedLabel">#6 Time Management</label>
+            <input class="inputCheckmark" #poorTimeManagementCheckBox id="poorTimeManagementCheckBox" type="checkbox"
+              (change)="poorTimeManagementChecked(poorTimeManagementCheckBox.checked)" [(ngModel)]="midSemesterReview.semesterLearningIssues.poorTimeManagement"
+              name="poorTimeManagement" ng-true-value="'true'" ng-false-value="'false'">
+          </div>
+          <div class="learningIssuesItem">
+            <label class="paddedLabel">#7 Health Issues</label>
+            <input class="inputCheckmark" #healthIssuesCheckBox id="healthIssuesCheckBox" type="checkbox" (change)="healthIssuesChecked(healthIssuesCheckBox.checked)"
+              [(ngModel)]="midSemesterReview.semesterLearningIssues.healthIssues" name="healthIssues" ng-true-value="'true'"
+              ng-false-value="'false'">
+          </div>
+          <div class="learningIssuesItem">
+            <label class="paddedLabel">#8 Complacence</label>
+            <input class="inputCheckmark" #complacenceCheckBox id="complacenceCheckBox" type="checkbox" (change)="complacenceChecked(complacenceCheckBox.checked)"
+              [(ngModel)]="midSemesterReview.semesterLearningIssues.complacence" name="complacence" ng-true-value="'true'"
+              ng-false-value="'false'">
+          </div>
+          <div class="learningIssuesItem">
+            <label class="paddedLabel">#9 Employment hours</label>
+            <input class="inputCheckmark" #employmentHoursCheckBox id="employmentHoursCheckBox" type="checkbox"
+              (change)="employmentHoursChecked(employmentHoursCheckBox.checked)" [(ngModel)]="midSemesterReview.semesterLearningIssues.employmentHours"
+              name="employmentHours" ng-true-value="'true'" ng-false-value="'false'">
+          </div>
+          <div class="learningIssuesItem">
+            <label class="paddedLabel">#10 Other</label>
+            <input class="inputCheckmark" #otherCheckBox id="otherCheckBox" type="checkbox" (change)="otherChecked(otherCheckBox.checked)"
+              [(ngModel)]="midSemesterReview.semesterLearningIssues.other" name="other" ng-true-value="'true'"
+              ng-false-value="'false'">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="semesterInstructorInteractions">Extent of instructor interactions</label><br>
+        <textarea class="form-control" name="semesterInstructorInteractions" [(ngModel)]="midSemesterReview.semesterInstructorInteractions"
+          rows="4"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="semesterInstructorNotes">Instructor recommendations</label><br>
+        <textarea class="form-control" name="semesterInstructorNotes" [(ngModel)]="midSemesterReview.semesterInstructorNotes"
+          rows="4"></textarea>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+  </div>
+</ng-template>
+
+<button class="btn btn-sm btn-outline-dark" (click)="open(content)">Add/Edit Mid-Semester Review</button>
+<!-- 
+<hr>
+
+<pre>{{closeResult}}</pre> -->

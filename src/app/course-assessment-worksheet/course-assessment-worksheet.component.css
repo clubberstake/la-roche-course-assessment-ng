@@ -21,6 +21,18 @@
   font-family: "Open Sans", sans-serif;
 }
 
+.semesterReviewTitle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 5px;
+}
+
+.semesterReviewTitleText {
+  font-weight: bolder;
+  min-width: 500px;
+}
+
 .paddedLabel {
   width: 200px;
 }
@@ -94,6 +106,7 @@
 
 .midSemesterReviewTextArea {
   width: 259px;
+  overflow-wrap: break-word;
 }
 
 .endSemesterReviewTextArea {

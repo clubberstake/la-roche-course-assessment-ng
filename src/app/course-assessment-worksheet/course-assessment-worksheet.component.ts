@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterContentChecked } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CourseAssessment } from './classes/course-assessment';
 import { Cafs1Info } from './classes/cafs1-info';
 import { Cafs2Info } from './classes/cafs2-info';
@@ -7,7 +7,8 @@ import { Cafs6Info } from './classes/cafs6-info';
 import { SemesterReview, SemesterLearningIssues } from './classes/course-semester-evaluation';
 import { CourseInformation } from './classes/course-information';
 import { CourseSLOs } from './classes/course-SLOs';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MidSemesterModalComponent } from './modals/mid-semester-modal/mid-semester-modal.component';
 
 @Component({
   selector: 'app-course-assessment-worksheet',
@@ -17,6 +18,9 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 export class CourseAssessmentWorksheetComponent implements OnInit {
 
   courseAssessment: CourseAssessment;
+  modalService: NgbModal;
+  midSemesterReview: SemesterReview;
+  midSemesterReviewSaved: boolean;
 
   constructor() {
     var courseInformation = new CourseInformation(0, 0, "sample", null, "sample", "sample", "sample", "sample");
@@ -27,10 +31,11 @@ export class CourseAssessmentWorksheetComponent implements OnInit {
     var cafs6Info = new Cafs6Info(0, 0, "", "", "", "", "", "", "");
     var midSemesterReviews = new Array<SemesterReview>();
     var endSemesterReviews = new Array<SemesterReview>();
-    this.courseAssessment = new CourseAssessment(courseInformation, courseSLOs, cafs1Info, cafs2Info, cafs3Info, cafs6Info, midSemesterReviews, endSemesterReviews);
+    this.courseAssessment = new CourseAssessment(courseInformation, courseSLOs, cafs1Info, cafs2Info, cafs3Info, cafs6Info, midSemesterReviews, endSemesterReviews)
   }
 
   ngOnInit() {
+    this.resetMidSemesterItem();
   }
 
   knowledgeBaseChecked(value: boolean) {
@@ -70,5 +75,36 @@ export class CourseAssessmentWorksheetComponent implements OnInit {
     this.courseAssessment.cafs2Info.percentC = 0;
     this.courseAssessment.cafs2Info.percentD = 0;
     this.courseAssessment.cafs2Info.percentF = 0;
+  }
+
+  calculateSemesterLearningIssues(issues: SemesterLearningIssues): string {
+    var learningIssues = '';
+    learningIssues = issues.coursePace ? learningIssues.concat('Course pace, ') : learningIssues.concat('');
+    learningIssues = issues.poorBackground ? learningIssues.concat('Poor background, ') : learningIssues.concat('');
+    learningIssues = issues.lackOfMindset ? learningIssues.concat('Mindset, ') : learningIssues.concat('');
+    learningIssues = issues.lackOfCuriosity ? learningIssues.concat('Interest or Curiousity, ') : learningIssues.concat('');
+    learningIssues = issues.lackOfEffortOrFocus ? learningIssues.concat('Effortor Focus, ') : learningIssues.concat('');
+    learningIssues = issues.poorTimeManagement ? learningIssues.concat('Time Manaagement, ') : learningIssues.concat('');
+    learningIssues = issues.healthIssues ? learningIssues.concat('Health issues, ') : learningIssues.concat('');
+    learningIssues = issues.complacence ? learningIssues.concat('Complacence, ') : learningIssues.concat('');
+    learningIssues = issues.employmentHours ? learningIssues.concat('Employment hours, ') : learningIssues.concat('');
+    learningIssues = issues.other ? learningIssues.concat('Other ') : learningIssues.concat('');
+
+    return learningIssues.trim().replace(/,\s*$/, "");
+  }
+
+  resetMidSemesterItem() {
+    this.midSemesterReview = new SemesterReview(0, '', '', new SemesterLearningIssues(false, false, false, false, false, false, false, false, false, false), '', '');
+  }
+
+  onMidSemesterItemSaved(saved: Boolean) {
+    if (saved) {
+      this.courseAssessment.midSemesterReviews.push(this.midSemesterReview);
+    }
+    this.resetMidSemesterItem();
+  }
+
+  hasMidSemesterReviews(): boolean {
+    return this.courseAssessment.midSemesterReviews.length > 0 ? true : false;
   }
 }

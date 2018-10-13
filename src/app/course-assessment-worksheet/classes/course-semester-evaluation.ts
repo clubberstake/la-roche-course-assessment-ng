@@ -8,7 +8,7 @@ export class SemesterReview {
 }
 
 export class SemesterLearningIssues {
-    constructor(public coursePace: Boolean, public lackOfMindset: Boolean, public lackOfCuriosity: Boolean,
+    constructor(public coursePace: Boolean, public poorBackground: Boolean, public lackOfMindset: Boolean, public lackOfCuriosity: Boolean,
         public lackOfEffortOrFocus: Boolean, public poorTimeManagement: Boolean, public healthIssues: Boolean,
         public complacence: Boolean, public employmentHours: Boolean, public other: Boolean) { }
 }
