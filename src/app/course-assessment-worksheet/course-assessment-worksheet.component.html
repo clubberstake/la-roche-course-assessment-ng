@@ -4,7 +4,7 @@
       <span class="title">Course Information</span>
       <div>
         <label class="paddedLabel">Course #/Sec:</label>
-        <span>{{courseAssessment.courseInformation.courseNumber}} / {{courseAssessment.courseInformation.section}}</span>
+        <span>{{courseAssessment.courseInformation.courseNumberAndSection}}</span>
       </div>
       <div>
         <label class="paddedLabel">Semester:</label>
@@ -86,7 +86,7 @@
         <textarea class="input" [(ngModel)]="courseAssessment.cafs2Info.objectivesContent"></textarea>
       </div>
       <div>
-        <span>Overall Student Performance</span><br>
+        <span>Overall Student Performance (calculates as grades are entered in section V. below)</span><br>
         <div class="gradesContainer">
           <div class="gradeContainer">
             <div class="gradeLetter">A</div>
@@ -158,27 +158,15 @@
       <div *ngIf="hasMidSemesterReviews()" class="semesterReviewsContainer">
         <div class="semesterReviewContainer">
           <div class="semesterReviewHeader">ID#</div>
-          <div *ngFor="let review of courseAssessment.midSemesterReviews">
-            <div class="semesterReviewSelector">{{review.studentId}}</div>
-          </div>
-        </div>
-        <div class="semesterReviewContainer">
           <div class="semesterReviewHeader">Learning Issues</div>
-          <div *ngFor="let review of courseAssessment.midSemesterReviews">
-            <div class="semesterReviewSelector">{{calculateSemesterLearningIssues(review.semesterLearningIssues)}}</div>
-          </div>
+          <div class="midSemesterReviewHeaderTextArea">Instructor Interaction</div>
+          <div class="midSemesterReviewHeaderTextAreaNoBorder">Instructor Evaluation</div>
         </div>
-        <div class="semesterReviewContainer">
-          <div class="semesterReviewHeader">Instructor Interaction</div>
-          <div *ngFor="let review of courseAssessment.midSemesterReviews">
-            <div class="midSemesterReviewTextArea">{{review.semesterInstructorInteractions}}</div>
-          </div>
-        </div>
-        <div class="semesterReviewContainer">
-          <div class="semesterReviewHeader">Instructor Evaluation</div>
-          <div *ngFor="let review of courseAssessment.midSemesterReviews">
-            <div class="midSemesterReviewTextArea">{{review.semesterInstructorNotes}}</div>
-          </div>
+        <div class="semesterReviewContainer" *ngFor="let review of courseAssessment.midSemesterReviews">
+          <div class="semesterReviewSelector">{{review.studentId}}</div>
+          <div class="semesterReviewSelector">{{calculateSemesterLearningIssues(review.semesterLearningIssues)}}</div>
+          <div class="midSemesterReviewTextArea">{{review.semesterInstructorInteractions}}</div>
+          <div class="midSemesterReviewTextAreaNoBorder">{{review.semesterInstructorNotes}}</div>
         </div>
       </div>
       <div *ngIf="!hasMidSemesterReviews()">
@@ -188,28 +176,28 @@
   </div>
   <div class="courseInfoAndChangesFlexboxRootContainer">
     <div class="itemContainer">
-      <span class="semesterReviewTitleText">V. Summative Individual Performance and evaluation</span>
-      <div class="semesterReviewsContainer">
+      <div class="semesterReviewTitle">
+        <span class="semesterReviewTitleText">V. Summative Individual Performance and evaluation</span>
+        <app-end-semester-modal [endSemesterReview]="endSemesterReview" (endSemesterItemSaved)="onEndSemesterItemSaved($event)"></app-end-semester-modal>
+      </div>
+      <div *ngIf="hasEndSemesterReviews()" class="semesterReviewsContainer">
         <div class="semesterReviewContainer">
-          <div class="semesterReviewHeader">ID#</div>
-          <div class="semesterReviewSelector">10</div>
+          <div class="endSemesterReviewHeader">ID#</div>
+          <div class="endSemesterReviewHeader">Grade</div>
+          <div class="endSemesterReviewHeader">Learning Issues</div>
+          <div class="endSemesterReviewHeaderTextArea">Instructor Interaction</div>
+          <div class="endSemesterReviewHeaderTextAreaNoBorder">Instructor Evaluation</div>
         </div>
-        <div class="semesterReviewContainer">
-          <div class="semesterReviewHeader">Grade</div>
-          <div class="semesterReviewSelector">10</div>
+        <div class="semesterReviewContainer" *ngFor="let review of courseAssessment.endSemesterReviews">
+          <div class="semesterReviewSelector">{{review.studentId}}</div>
+          <div class="semesterReviewSelector">{{review.grade}}</div>
+          <div class="semesterReviewSelector">{{calculateSemesterLearningIssues(review.semesterLearningIssues)}}</div>
+          <div class="endSemesterReviewTextArea">{{review.semesterInstructorInteractions}}</div>
+          <div class="endSemesterReviewTextAreaNoBorder">{{review.semesterInstructorNotes}}</div>
         </div>
-        <div class="semesterReviewContainer">
-          <div class="semesterReviewHeader">Learning Issues</div>
-          <div class="semesterReviewSelector">10</div>
-        </div>
-        <div class="semesterReviewContainer">
-          <div class="semesterReviewHeader">Instructor Interaction</div>
-          <textarea class="endSemesterReviewTextArea"></textarea>
-        </div>
-        <div class="semesterReviewContainer">
-          <div class="semesterReviewHeader">Instructor Evaluation</div>
-          <textarea class="endSemesterReviewTextArea"></textarea>
-        </div>
+      </div>
+      <div *ngIf="!hasEndSemesterReviews()">
+        <span>Please click the "Add/Edit End-Semester Review" button above</span>
       </div>
     </div>
   </div>

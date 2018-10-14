@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from "@angular/common/http";
 import { HttpModule } from "@angular/http";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './ui/layout/layout.component';
@@ -15,6 +15,7 @@ import { SiteAdminComponent } from './site-admin/site-admin.component';
 import { CourseArchiveComponent } from './course-archive/course-archive.component';
 import { MidSemesterModalComponent } from './course-assessment-worksheet/modals/mid-semester-modal/mid-semester-modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EndSemesterModalComponent } from './course-assessment-worksheet/modals/end-semester-modal/end-semester-modal.component';
 
 @NgModule({
   declarations: [
@@ -27,9 +28,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SiteAdminComponent,
     CourseArchiveComponent,
     MidSemesterModalComponent,
+    EndSemesterModalComponent,
   ],
   imports: [
-    BrowserModule, HttpClientModule, HttpModule, FormsModule, AppRoutingModule, NgbModule
+    BrowserModule, HttpClientModule, HttpModule, FormsModule, AppRoutingModule, NgbModule, ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -34,7 +34,7 @@
 }
 
 .paddedLabel {
-  width: 200px;
+  width: 155px;
 }
 
 .input {
@@ -85,36 +85,102 @@
 
 .semesterReviewsContainer {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  border-top: 3px solid #000;
 }
 
 .semesterReviewContainer {
   display: flex;
-  flex-direction: column;
-  border: 3px solid #000;
-  /* border-radius: 5px; */
+  flex-direction: row;
+  border-bottom: 3px solid #000;
+  border-left: 3px solid #000;
+  border-right: 3px solid #000;
 }
 
 .semesterReviewHeader {
-  border-bottom: 3px solid #000;
   font-weight: bold;
   padding-bottom: 10px;
   padding-top: 10px;
   background-color: #831917;
   color: #eee;
+  width: 85px;
+  border-right: 3px solid #000;
+}
+
+.midSemesterReviewHeaderTextArea {
+  font-weight: bold;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  background-color: #831917;
+  color: #eee;
+  width: 280px;
+  border-right: 3px solid #000;
+}
+
+.midSemesterReviewHeaderTextAreaNoBorder {
+  font-weight: bold;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  background-color: #831917;
+  color: #eee;
+  width: 280px;
+}
+
+.endSemesterReviewHeader {
+  font-weight: bold;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  background-color: #831917;
+  color: #eee;
+  width: 85px;
+  border-right: 3px solid #000;
+}
+
+.endSemesterReviewHeaderTextArea {
+  font-weight: bold;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  background-color: #831917;
+  color: #eee;
+  width: 229px;
+  border-right: 3px solid #000;
+}
+
+.endSemesterReviewHeaderTextAreaNoBorder {
+  font-weight: bold;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  background-color: #831917;
+  color: #eee;
+  width: 229px;
 }
 
 .midSemesterReviewTextArea {
-  width: 259px;
+  width: 280px;
+  overflow-wrap: break-word;
+  border-right: 3px solid #000;
+}
+
+.midSemesterReviewTextAreaNoBorder {
+  width: 280px;
   overflow-wrap: break-word;
 }
 
 .endSemesterReviewTextArea {
-  width: 223px;
+  width: 229px;
+  overflow-wrap: break-word;
+  border-right: 3px solid #000;
+}
+
+.endSemesterReviewTextAreaNoBorder {
+  width: 229px;
+  overflow-wrap: break-word;
 }
 
 .semesterReviewSelector {
-  width: 67px;
+  width: 85px;
+  overflow-wrap: break-word;
+  border-right: 3px solid #000;
 }
 
 .marginBottom {

@@ -21,11 +21,12 @@ export class CourseAssessmentWorksheetComponent implements OnInit {
   modalService: NgbModal;
   midSemesterReview: SemesterReview;
   midSemesterReviewSaved: boolean;
+  endSemesterReview: SemesterReview;
 
   constructor() {
-    var courseInformation = new CourseInformation(0, 0, "sample", null, "sample", "sample", "sample", "sample");
+    var courseInformation = new CourseInformation(0, 0, "CHEM2016", null, "Fall 2018", "Organic Chemistry II Lecture", "Dr. D.T. Fujito, Professor/Chair of Chemistry");
     var courseSLOs = new CourseSLOs(0, 0, false, true, false, true, false);
-    var cafs1Info = new Cafs1Info(0, 0, "asdfasdf", "", "", "", "");
+    var cafs1Info = new Cafs1Info(0, 0, "", "", "", "", "");
     var cafs2Info = new Cafs2Info(0, 0, "", "", "", 0, 0, 0, 0, 0);
     var cafs3Info = new Cafs3Info(0, 0, "", "", "", "", "", "", "");
     var cafs6Info = new Cafs6Info(0, 0, "", "", "", "", "", "", "");
@@ -36,6 +37,7 @@ export class CourseAssessmentWorksheetComponent implements OnInit {
 
   ngOnInit() {
     this.resetMidSemesterItem();
+    this.resetEndSemesterItem();
   }
 
   knowledgeBaseChecked(value: boolean) {
@@ -59,7 +61,7 @@ export class CourseAssessmentWorksheetComponent implements OnInit {
   }
 
   calculateGrades() {
-    // console.log(this.courseAssessment);
+    this.resetGrades();
     for (let review of this.courseAssessment.endSemesterReviews) {
       review.grade == 'A' ? this.courseAssessment.cafs2Info.percentA += 1 : 0;
       review.grade == 'B' ? this.courseAssessment.cafs2Info.percentB += 1 : 0;
@@ -106,5 +108,21 @@ export class CourseAssessmentWorksheetComponent implements OnInit {
 
   hasMidSemesterReviews(): boolean {
     return this.courseAssessment.midSemesterReviews.length > 0 ? true : false;
+  }
+
+  resetEndSemesterItem() {
+    this.endSemesterReview = new SemesterReview(0, '', '', new SemesterLearningIssues(false, false, false, false, false, false, false, false, false, false), '', '');
+  }
+
+  onEndSemesterItemSaved(saved: Boolean) {
+    if (saved) {
+      this.courseAssessment.endSemesterReviews.push(this.endSemesterReview);
+      this.calculateGrades();
+    }
+    this.resetEndSemesterItem();
+  }
+
+  hasEndSemesterReviews(): boolean {
+    return this.courseAssessment.endSemesterReviews.length > 0 ? true : false;
   }
 }

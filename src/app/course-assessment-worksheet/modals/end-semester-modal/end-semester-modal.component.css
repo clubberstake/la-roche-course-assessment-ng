@@ -1,0 +1,27 @@
+.paddedLabel {
+    width: 156px;
+}
+
+.inputCheckmark {
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    margin-left: 30px;
+    margin-right: 50px;
+}
+
+.studentId {
+    max-width: 7ch;
+}
+
+.learningIssuesContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.learningIssuesItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
