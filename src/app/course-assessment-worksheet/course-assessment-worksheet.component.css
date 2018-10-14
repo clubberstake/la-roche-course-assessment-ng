@@ -186,3 +186,7 @@
 .marginBottom {
   margin-bottom: 50px;
 }
+
+.saveButton{
+  margin: 10px;
+}

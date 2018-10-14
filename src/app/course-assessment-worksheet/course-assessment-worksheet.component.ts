@@ -7,8 +7,7 @@ import { Cafs6Info } from './classes/cafs6-info';
 import { SemesterReview, SemesterLearningIssues } from './classes/course-semester-evaluation';
 import { CourseInformation } from './classes/course-information';
 import { CourseSLOs } from './classes/course-SLOs';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { MidSemesterModalComponent } from './modals/mid-semester-modal/mid-semester-modal.component';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-course-assessment-worksheet',
@@ -18,26 +17,31 @@ import { MidSemesterModalComponent } from './modals/mid-semester-modal/mid-semes
 export class CourseAssessmentWorksheetComponent implements OnInit {
 
   courseAssessment: CourseAssessment;
-  modalService: NgbModal;
   midSemesterReview: SemesterReview;
-  midSemesterReviewSaved: boolean;
   endSemesterReview: SemesterReview;
+  courseList: Array<CourseInformation>;
+  selectedCourse: CourseInformation;
 
   constructor() {
-    var courseInformation = new CourseInformation(0, 0, "CHEM2016", null, "Fall 2018", "Organic Chemistry II Lecture", "Dr. D.T. Fujito, Professor/Chair of Chemistry");
-    var courseSLOs = new CourseSLOs(0, 0, false, true, false, true, false);
+    var courseInformation = new CourseInformation(0, 0, "", null, "", "", "");
+    var courseSLOs = new CourseSLOs(0, 0, false, false, false, false, false);
     var cafs1Info = new Cafs1Info(0, 0, "", "", "", "", "");
     var cafs2Info = new Cafs2Info(0, 0, "", "", "", 0, 0, 0, 0, 0);
     var cafs3Info = new Cafs3Info(0, 0, "", "", "", "", "", "", "");
     var cafs6Info = new Cafs6Info(0, 0, "", "", "", "", "", "", "");
     var midSemesterReviews = new Array<SemesterReview>();
     var endSemesterReviews = new Array<SemesterReview>();
+    this.courseList = new Array<CourseInformation>();
     this.courseAssessment = new CourseAssessment(courseInformation, courseSLOs, cafs1Info, cafs2Info, cafs3Info, cafs6Info, midSemesterReviews, endSemesterReviews)
   }
 
   ngOnInit() {
     this.resetMidSemesterItem();
     this.resetEndSemesterItem();
+    this.courseList.push(new CourseInformation(1, 1, "CHEM2016", null, "Fall 2018", "Organic Chemistry II Lecture", "Dr. D.T. Fujito, Professor/Chair of Chemistry"));
+    this.courseList.push(new CourseInformation(2, 2, "CSCI4096", null, "Fall 2018", "Capstone I", "Mr. Jeffery Perdue"));
+    this.selectedCourse = this.courseList[0];
+    this.setCourse();
   }
 
   knowledgeBaseChecked(value: boolean) {
@@ -124,5 +128,9 @@ export class CourseAssessmentWorksheetComponent implements OnInit {
 
   hasEndSemesterReviews(): boolean {
     return this.courseAssessment.endSemesterReviews.length > 0 ? true : false;
+  }
+
+  setCourse() {
+    this.courseAssessment.courseInformation = this.selectedCourse;
   }
 }
