@@ -17,6 +17,10 @@ export class UrlService {
   }
 
   public getSaveCourseURL(): string {
-    return this.baseUrl + '/course';
+    return this.baseUrl + '/courseAssessment';
+  }
+
+  public getCourseAssessmentURL(courseId: number): string {
+    return this.baseUrl + '/courseAssessment/' + courseId;
   }
 }

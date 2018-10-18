@@ -24,23 +24,17 @@ export class CourseAssessmentWorksheetComponent implements OnInit {
   selectedCourse: CourseInformation;
 
   constructor(private courseService: CourseService) {
-    var courseInformation = new CourseInformation(0, "", null, "", "", new Instructor(0, ""));
-    var courseSLOs = new CourseSLOs(0, false, false, false, false, false);
-    var cafs1Info = new Cafs1Info(0, "", "", "", "", "");
-    var cafs2Info = new Cafs2Info(0, "", "", "", 0, 0, 0, 0, 0);
-    var cafs3Info = new Cafs3Info(0, "", "", "", "", "", "", "");
-    var cafs6Info = new Cafs6Info(0, "", "", "", "", "", "", "");
-    var midSemesterReviews = new Array<SemesterReview>();
-    var endSemesterReviews = new Array<SemesterReview>();
     this.courseList = new Array<CourseInformation>();
-    this.courseAssessment = new CourseAssessment(courseInformation, courseSLOs, cafs1Info, cafs2Info, cafs3Info, cafs6Info, midSemesterReviews, endSemesterReviews)
   }
 
   ngOnInit() {
+    this.createEmptyCourse();
     this.resetMidSemesterItem();
     this.resetEndSemesterItem();
-    // this.courseList.push(new CourseInformation(1, "CHEM2016", null, "Fall 2018", "Organic Chemistry II Lecture", "Dr. D.T. Fujito, Professor/Chair of Chemistry"));
-    // this.courseList.push(new CourseInformation(2, "CSCI4096", null, "Fall 2018", "Capstone I", "Mr. Jeffery Perdue"));
+    this.loadCourseInformationList();
+  }
+
+  loadCourseInformationList() {
     this.courseService.getCourseList().subscribe((courses: CourseInformation[]) => {
       console.log(courses);
       this.courseList = courses.sort((a: CourseInformation, b: CourseInformation) => {
@@ -58,8 +52,6 @@ export class CourseAssessmentWorksheetComponent implements OnInit {
       this.setCourse();
     });
   }
-
-
 
   knowledgeBaseChecked(value: boolean) {
     this.courseAssessment.courseSLOs.slo1 = value;
@@ -83,13 +75,15 @@ export class CourseAssessmentWorksheetComponent implements OnInit {
 
   calculateGrades() {
     this.resetGrades();
-    for (let review of this.courseAssessment.endSemesterReviews) {
+
+    for (let review of Array.from(this.courseAssessment.endSemesterReviews.values())) {
       review.grade == 'A' ? this.courseAssessment.cafs2Info.percentA += 1 : 0;
       review.grade == 'B' ? this.courseAssessment.cafs2Info.percentB += 1 : 0;
       review.grade == 'C' ? this.courseAssessment.cafs2Info.percentC += 1 : 0;
       review.grade == 'D' ? this.courseAssessment.cafs2Info.percentD += 1 : 0;
       review.grade == 'F' ? this.courseAssessment.cafs2Info.percentF += 1 : 0;
     }
+
   }
 
   resetGrades() {
@@ -123,6 +117,8 @@ export class CourseAssessmentWorksheetComponent implements OnInit {
   onMidSemesterItemSaved(saved: Boolean) {
     if (saved) {
       this.courseAssessment.midSemesterReviews.push(this.midSemesterReview);
+      console.log(this.courseAssessment);
+      console.log("huh", JSON.stringify(this.courseAssessment));
     }
     this.resetMidSemesterItem();
   }
@@ -138,6 +134,8 @@ export class CourseAssessmentWorksheetComponent implements OnInit {
   onEndSemesterItemSaved(saved: Boolean) {
     if (saved) {
       this.courseAssessment.endSemesterReviews.push(this.endSemesterReview);
+      console.log(this.courseAssessment);
+      console.log("huh", JSON.stringify(this.courseAssessment));
       this.calculateGrades();
     }
     this.resetEndSemesterItem();
@@ -149,5 +147,33 @@ export class CourseAssessmentWorksheetComponent implements OnInit {
 
   setCourse() {
     this.courseAssessment.courseInformation = this.selectedCourse;
+  }
+
+  loadCourse() {
+    this.courseService.loadCourse(this.selectedCourse.id).subscribe((courseAssessment: CourseAssessment) => {
+      console.log(courseAssessment);
+      if (courseAssessment) {
+        this.courseAssessment = courseAssessment;
+      }
+      else {
+        this.createEmptyCourse();
+      }
+    });
+  }
+
+  createEmptyCourse() {
+    var courseInformation = new CourseInformation(0, "", null, "", "", new Instructor(0, ""));
+    var courseSLOs = new CourseSLOs(0, false, false, false, false, false);
+    var cafs1Info = new Cafs1Info(0, "", "", "", "", "");
+    var cafs2Info = new Cafs2Info(0, "", "", "", 0, 0, 0, 0, 0);
+    var cafs3Info = new Cafs3Info(0, "", "", "", "", "", "", "");
+    var cafs6Info = new Cafs6Info(0, "", "", "", "", "", "", "");
+    var midSemesterReviews = new Array<SemesterReview>();
+    var endSemesterReviews = new Array<SemesterReview>();
+    this.courseAssessment = new CourseAssessment(courseInformation, courseSLOs, cafs1Info, cafs2Info, cafs3Info, cafs6Info, midSemesterReviews, endSemesterReviews);
+  }
+
+  saveCourse() {
+    this.courseService.saveCourse(this.courseAssessment);
   }
 }

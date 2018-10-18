@@ -18,9 +18,14 @@ export class CourseService {
   };
 
   public saveCourse(courseAssessment: CourseAssessment) {
-    console.log("POSTing course", courseAssessment);
+    console.log("PUTing course", JSON.stringify(courseAssessment));
     return this.http
       .put<Response>(this.urlService.getSaveCourseURL(), courseAssessment)
       .subscribe(res => console.log(res));
+  }
+
+  public loadCourse(courseId: number): Observable<CourseAssessment> {
+    console.log('getting course assessment');
+    return this.http.get<CourseAssessment>(this.urlService.getCourseAssessmentURL(courseId));
   }
 }
