@@ -7,7 +7,8 @@ import { Cafs6Info } from './classes/cafs6-info';
 import { SemesterReview, SemesterLearningIssues } from './classes/course-semester-evaluation';
 import { CourseInformation } from './classes/course-information';
 import { CourseSLOs } from './classes/course-SLOs';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { CourseService } from './service/course-service.service';
+import { Instructor } from './classes/instructor';
 
 @Component({
   selector: 'app-course-assessment-worksheet',
@@ -22,13 +23,13 @@ export class CourseAssessmentWorksheetComponent implements OnInit {
   courseList: Array<CourseInformation>;
   selectedCourse: CourseInformation;
 
-  constructor() {
-    var courseInformation = new CourseInformation(0, 0, "", null, "", "", "");
-    var courseSLOs = new CourseSLOs(0, 0, false, false, false, false, false);
-    var cafs1Info = new Cafs1Info(0, 0, "", "", "", "", "");
-    var cafs2Info = new Cafs2Info(0, 0, "", "", "", 0, 0, 0, 0, 0);
-    var cafs3Info = new Cafs3Info(0, 0, "", "", "", "", "", "", "");
-    var cafs6Info = new Cafs6Info(0, 0, "", "", "", "", "", "", "");
+  constructor(private courseService: CourseService) {
+    var courseInformation = new CourseInformation(0, "", null, "", "", new Instructor(0, ""));
+    var courseSLOs = new CourseSLOs(0, false, false, false, false, false);
+    var cafs1Info = new Cafs1Info(0, "", "", "", "", "");
+    var cafs2Info = new Cafs2Info(0, "", "", "", 0, 0, 0, 0, 0);
+    var cafs3Info = new Cafs3Info(0, "", "", "", "", "", "", "");
+    var cafs6Info = new Cafs6Info(0, "", "", "", "", "", "", "");
     var midSemesterReviews = new Array<SemesterReview>();
     var endSemesterReviews = new Array<SemesterReview>();
     this.courseList = new Array<CourseInformation>();
@@ -38,11 +39,27 @@ export class CourseAssessmentWorksheetComponent implements OnInit {
   ngOnInit() {
     this.resetMidSemesterItem();
     this.resetEndSemesterItem();
-    this.courseList.push(new CourseInformation(1, 1, "CHEM2016", null, "Fall 2018", "Organic Chemistry II Lecture", "Dr. D.T. Fujito, Professor/Chair of Chemistry"));
-    this.courseList.push(new CourseInformation(2, 2, "CSCI4096", null, "Fall 2018", "Capstone I", "Mr. Jeffery Perdue"));
-    this.selectedCourse = this.courseList[0];
-    this.setCourse();
+    // this.courseList.push(new CourseInformation(1, "CHEM2016", null, "Fall 2018", "Organic Chemistry II Lecture", "Dr. D.T. Fujito, Professor/Chair of Chemistry"));
+    // this.courseList.push(new CourseInformation(2, "CSCI4096", null, "Fall 2018", "Capstone I", "Mr. Jeffery Perdue"));
+    this.courseService.getCourseList().subscribe((courses: CourseInformation[]) => {
+      console.log(courses);
+      this.courseList = courses.sort((a: CourseInformation, b: CourseInformation) => {
+        if (a.id < b.id) {
+          return -1;
+        }
+        else if (a.id > b.id) {
+          return 1;
+        }
+        else {
+          return 0;
+        }
+      });
+      this.selectedCourse = this.courseList[0];
+      this.setCourse();
+    });
   }
+
+
 
   knowledgeBaseChecked(value: boolean) {
     this.courseAssessment.courseSLOs.slo1 = value;

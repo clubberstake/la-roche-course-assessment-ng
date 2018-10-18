@@ -28,7 +28,7 @@ import { EndSemesterModalComponent } from './course-assessment-worksheet/modals/
     SiteAdminComponent,
     CourseArchiveComponent,
     MidSemesterModalComponent,
-    EndSemesterModalComponent,
+    EndSemesterModalComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, HttpModule, FormsModule, AppRoutingModule, NgbModule, ReactiveFormsModule

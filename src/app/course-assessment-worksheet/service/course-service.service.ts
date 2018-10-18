@@ -8,7 +8,7 @@ import { CourseAssessment } from '../classes/course-assessment';
 @Injectable({
   providedIn: 'root'
 })
-export class CourseServiceService {
+export class CourseService {
 
   constructor(private http: HttpClient, private urlService: UrlService) { }
 
