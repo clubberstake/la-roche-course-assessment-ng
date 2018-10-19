@@ -83,7 +83,6 @@ export class CourseAssessmentWorksheetComponent implements OnInit {
       review.grade == 'D' ? this.courseAssessment.cafs2Info.percentD += 1 : 0;
       review.grade == 'F' ? this.courseAssessment.cafs2Info.percentF += 1 : 0;
     }
-
   }
 
   resetGrades() {
@@ -157,6 +156,7 @@ export class CourseAssessmentWorksheetComponent implements OnInit {
       }
       else {
         this.createEmptyCourse();
+        this.courseAssessment.courseInformation = this.selectedCourse;
       }
     });
   }
@@ -170,10 +170,10 @@ export class CourseAssessmentWorksheetComponent implements OnInit {
     var cafs6Info = new Cafs6Info(0, "", "", "", "", "", "", "");
     var midSemesterReviews = new Array<SemesterReview>();
     var endSemesterReviews = new Array<SemesterReview>();
-    this.courseAssessment = new CourseAssessment(courseInformation, courseSLOs, cafs1Info, cafs2Info, cafs3Info, cafs6Info, midSemesterReviews, endSemesterReviews);
+    this.courseAssessment = new CourseAssessment(0, courseInformation, courseSLOs, cafs1Info, cafs2Info, cafs3Info, cafs6Info, midSemesterReviews, endSemesterReviews);
   }
 
   saveCourse() {
-    this.courseService.saveCourse(this.courseAssessment);
+    this.courseAssessment.id = this.courseService.saveCourse(this.courseAssessment);
   }
 }

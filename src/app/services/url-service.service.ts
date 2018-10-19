@@ -20,6 +20,14 @@ export class UrlService {
     return this.baseUrl + '/courseAssessment';
   }
 
+  public getSaveEndSemesterReviewURL(courseId: number): string {
+    return this.baseUrl + '/endSemesterReview/' + courseId;
+  }
+
+  public getSaveMidSemesterReviewURL(courseId: number): string {
+    return this.baseUrl + '/midSemesterReview/' + courseId;
+  }
+
   public getCourseAssessmentURL(courseId: number): string {
     return this.baseUrl + '/courseAssessment/' + courseId;
   }

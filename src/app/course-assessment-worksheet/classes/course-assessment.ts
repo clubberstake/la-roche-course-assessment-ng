@@ -7,7 +7,7 @@ import { CourseInformation } from "./course-information";
 import { CourseSLOs } from "./course-SLOs";
 
 export class CourseAssessment {
-    constructor(public courseInformation: CourseInformation, public courseSLOs: CourseSLOs, public cafs1Info: Cafs1Info, public cafs2Info: Cafs2Info,
+    constructor(public id: number, public courseInformation: CourseInformation, public courseSLOs: CourseSLOs, public cafs1Info: Cafs1Info, public cafs2Info: Cafs2Info,
         public cafs3Info: Cafs3Info, public cafs6Info: Cafs6Info,
         public midSemesterReviews: Array<SemesterReview>, public endSemesterReviews: Array<SemesterReview>) { }
 }
