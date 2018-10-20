@@ -8,7 +8,7 @@ import { SemesterReview, SemesterLearningIssues } from './classes/course-semeste
 import { CourseInformation } from './classes/course-information';
 import { CourseSLOs } from './classes/course-SLOs';
 import { CourseService } from './service/course-service.service';
-import { Instructor } from './classes/instructor';
+import { Instructor } from '../site-admin/classes/instructor';
 
 @Component({
   selector: 'app-course-assessment-worksheet',
@@ -162,7 +162,7 @@ export class CourseAssessmentWorksheetComponent implements OnInit {
   }
 
   createEmptyCourse() {
-    var courseInformation = new CourseInformation(0, "", null, "", "", new Instructor(0, ""));
+    var courseInformation = new CourseInformation(0, "", null, "", "", "", new Instructor(0, '', ''));
     var courseSLOs = new CourseSLOs(0, false, false, false, false, false);
     var cafs1Info = new Cafs1Info(0, "", "", "", "", "");
     var cafs2Info = new Cafs2Info(0, "", "", "", 0, 0, 0, 0, 0);

@@ -3,14 +3,14 @@
     <div class="itemContainer">
       <span class="title">Course Information</span>
       <div>
-        <label class="paddedLabel">Course #/Sec:</label>
+        <label class="paddedLabel">Course Section/#:</label>
         <select [(ngModel)]="selectedCourse" (change)="setCourse()">
           <option [ngValue]="course" *ngFor="let course of courseList"> {{course.courseNumberAndSection}}</option>
         </select>
       </div>
       <div>
-        <label class="paddedLabel">Semester:</label>
-        <span>{{courseAssessment.courseInformation.semester}}</span>
+        <label class="paddedLabel">Semester & Year:</label>
+        <span>{{courseAssessment.courseInformation.semester}} {{courseAssessment.courseInformation.year}} </span>
       </div>
       <div>
         <label class="paddedLabel">Course Title:</label>

@@ -11,5 +11,4 @@ export class SiteAdminComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

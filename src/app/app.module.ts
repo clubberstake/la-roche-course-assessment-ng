@@ -16,6 +16,9 @@ import { CourseArchiveComponent } from './course-archive/course-archive.componen
 import { MidSemesterModalComponent } from './course-assessment-worksheet/modals/mid-semester-modal/mid-semester-modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EndSemesterModalComponent } from './course-assessment-worksheet/modals/end-semester-modal/end-semester-modal.component';
+import { StudentAdminComponent } from './site-admin/components/student-admin/student-admin.component';
+import { InstructorAdminComponent } from './site-admin/components/instructor-admin/instructor-admin.component';
+import { CourseInformationAdminComponent } from './site-admin/components/course-information-admin/course-information-admin.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { EndSemesterModalComponent } from './course-assessment-worksheet/modals/
     SiteAdminComponent,
     CourseArchiveComponent,
     MidSemesterModalComponent,
-    EndSemesterModalComponent
+    EndSemesterModalComponent,
+    StudentAdminComponent,
+    InstructorAdminComponent,
+    CourseInformationAdminComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, HttpModule, FormsModule, AppRoutingModule, NgbModule, ReactiveFormsModule

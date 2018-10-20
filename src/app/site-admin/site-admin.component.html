@@ -1,25 +1,7 @@
-<div class="courseInfoAndChangesFlexboxRootContainer">
-  <div class="itemContainer">
-    <span class="title">Add/Edit Student</span>
-    <!-- <div>
-      <span>Please add/edit :</span><br>
-      <textarea class="input" [(ngModel)]="courseAssessment.cafs1Info.newSLOs"></textarea>
-    </div>
-    <div>
-      <span>Upgrades to course content:</span><br>
-      <textarea class="input" [(ngModel)]="courseAssessment.cafs1Info.upgrades"></textarea>
-    </div>
-    <div>
-      <span>Pedagogy enhancements:</span><br>
-      <textarea class="input" [(ngModel)]="courseAssessment.cafs1Info.enhancements"></textarea>
-    </div>
-    <div>
-      <span>Modifications to student assessment measures:</span><br>
-      <textarea class="input" [(ngModel)]="courseAssessment.cafs1Info.modifications"></textarea>
-    </div>
-    <div>
-      <span>Other course changes implemented this semester:</span><br>
-      <textarea class="input" [(ngModel)]="courseAssessment.cafs1Info.other"></textarea>
-    </div> -->
+<div class="siteAdminContainer">
+  <div class="rowContainer">
+    <app-student-admin></app-student-admin>
+    <app-instructor-admin></app-instructor-admin>
   </div>
+  <app-course-information-admin></app-course-information-admin>
 </div>

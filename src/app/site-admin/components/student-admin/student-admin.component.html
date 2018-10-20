@@ -1,0 +1,23 @@
+<div class="siteAdminFlexboxRowContainer">
+  <div class="itemContainer">
+    <div class="searchTitle">
+      <span class="title">Add/Edit Student:</span>
+      <span class="spanSpacer"></span>
+      <button class="btn btn-lg btn-info" (click)="loadStudent()" [disabled]="!validEmail">Find Student</button>
+    </div>
+    <div>
+      <span>Please add/edit email:</span><br>
+      <input placeholder="Enter valid email and click Find Student" type="email" class="form-control info" [(ngModel)]="studentEmail"
+        (ngModelChange)="onEmailChange($event)">
+    </div>
+    <div>
+      <span>Please enter student full name:</span><br>
+      <input class="form-control info" [(ngModel)]="student.studentName" (ngModelChange)="onNameChange()" placeholder="{{existingStudent ? '' : 'New Student, please add full name'}}">
+    </div>
+    <div class="saveButton">
+      <button class="btn btn-lg btn-dark" (click)="saveStudent()" [disabled]="!validEmail">Save Student</button>
+      <span class="spanSpacer"></span>
+      <button class="btn btn-lg btn-danger" (click)="deleteStudent()" [disabled]="!studentLoaded">Delete Student</button>
+    </div>
+  </div>
+</div>
