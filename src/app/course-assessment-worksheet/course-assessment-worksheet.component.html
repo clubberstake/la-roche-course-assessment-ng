@@ -5,7 +5,7 @@
       <div>
         <label class="paddedLabel">Course Section/#:</label>
         <select [(ngModel)]="selectedCourse" (change)="setCourse()">
-          <option [ngValue]="course" *ngFor="let course of courseList"> {{course.courseNumberSection}}</option>
+          <option [ngValue]="course" *ngFor="let course of courseList"> {{course.courseNumberSection}} -> {{course.semester}}, {{course.year}}</option>
         </select>
       </div>
       <div>
@@ -168,7 +168,7 @@
           <div class="midSemesterReviewHeaderTextAreaNoBorder">Instructor Evaluation</div>
         </div>
         <div class="semesterReviewContainer" *ngFor="let review of courseAssessment.midSemesterReviews">
-          <div class="semesterReviewSelector">{{review.studentId}}</div>
+          <div class="semesterReviewSelector">{{review.student.studentName}}</div>
           <div class="semesterReviewSelector">{{calculateSemesterLearningIssues(review.semesterLearningIssues)}}</div>
           <div class="midSemesterReviewTextArea">{{review.semesterInstructorInteractions}}</div>
           <div class="midSemesterReviewTextAreaNoBorder">{{review.semesterInstructorNotes}}</div>
@@ -194,7 +194,7 @@
           <div class="endSemesterReviewHeaderTextAreaNoBorder">Instructor Evaluation</div>
         </div>
         <div class="semesterReviewContainer" *ngFor="let review of courseAssessment.endSemesterReviews">
-          <div class="semesterReviewSelector">{{review.studentId}}</div>
+          <div class="semesterReviewSelector">{{review.student.studentName}}</div>
           <div class="semesterReviewSelector">{{review.grade}}</div>
           <div class="semesterReviewSelector">{{calculateSemesterLearningIssues(review.semesterLearningIssues)}}</div>
           <div class="endSemesterReviewTextArea">{{review.semesterInstructorInteractions}}</div>

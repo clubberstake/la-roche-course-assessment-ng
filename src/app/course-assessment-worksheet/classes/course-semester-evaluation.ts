@@ -1,9 +1,11 @@
+import { Student } from "src/app/site-admin/classes/student";
+
 export class CourseSemesterEvaluation {
     constructor(semesterReviews: SemesterReview[]) { }
 }
 
 export class SemesterReview {
-    constructor(public studentId: Number, public grade: String, public studentName: String, public semesterLearningIssues: SemesterLearningIssues,
+    constructor(public student: Student, public grade: String, public semesterLearningIssues: SemesterLearningIssues,
         public semesterInstructorInteractions: String, public semesterInstructorNotes: String) { }
 }
 

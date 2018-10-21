@@ -25,3 +25,11 @@
     flex-direction: row;
     justify-content: space-between;
 }
+
+.searchTitle{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}

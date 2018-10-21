@@ -25,29 +25,8 @@ export class CourseService {
       .subscribe(res => {
         console.log(res);
         courseAssessmentId = res;
-
-        for (let review of courseAssessment.endSemesterReviews) {
-          response = this.saveEndSemesterReviews(courseAssessmentId, review);
-        }
-
-        for (let review of courseAssessment.midSemesterReviews) {
-          response = this.saveMidSemesterReviews(courseAssessmentId, review);
-        }
-
       });
     return courseAssessmentId;
-  }
-
-  private saveEndSemesterReviews(courseId: number, semesterReview: SemesterReview) {
-    return this.http
-      .put<Response>(this.urlService.getSaveEndSemesterReviewURL(courseId), semesterReview)
-      .subscribe(res => console.log(res));
-  }
-
-  private saveMidSemesterReviews(courseId: number, semesterReview: SemesterReview) {
-    return this.http
-      .put<Response>(this.urlService.getSaveMidSemesterReviewURL(courseId), semesterReview)
-      .subscribe(res => console.log(res));
   }
 
   public loadCourse(courseId: number): Observable<CourseAssessment> {

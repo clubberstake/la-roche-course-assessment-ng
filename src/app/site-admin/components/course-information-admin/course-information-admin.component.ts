@@ -117,7 +117,9 @@ export class CourseInformationAdminComponent implements OnInit {
   }
 
   onNameChange() {
-    this.validCourseSection = true; // only re-enable the button is something acutally was typed.
+    if (this.validCourseSection){
+      this.existingCourseSection = false;
+    }
   }
 
   deleteCourseInformation() {

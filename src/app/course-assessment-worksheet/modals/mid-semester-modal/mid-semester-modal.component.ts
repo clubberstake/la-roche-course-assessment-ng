@@ -1,6 +1,8 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { SemesterReview, SemesterLearningIssues } from '../../classes/course-semester-evaluation';
+import { StudentService } from 'src/app/services/student.service';
+import { Student } from 'src/app/site-admin/classes/student';
 
 @Component({
   selector: 'app-mid-semester-modal',
@@ -16,8 +18,13 @@ export class MidSemesterModalComponent {
   @Output()
   midSemesterItemSaved = new EventEmitter<boolean>();
 
-  constructor(private modalService: NgbModal) {
-    this.midSemesterReview = new SemesterReview(0, '', '', new SemesterLearningIssues(false, false, false, false, false, false, false, false, false, false), '', '');
+  studentEmail: String;
+  validEmail: boolean;
+
+  constructor(private modalService: NgbModal, private studentService: StudentService) {
+    this.midSemesterReview = new SemesterReview(new Student(0, '', null, '', '', '', '', '', '', '', '', '', '', ''),
+      '', new SemesterLearningIssues(false, false, false, false, false, false, false, false, false, false),'','');
+    this.studentEmail = '';
   }
 
   open(content) {
@@ -37,6 +44,24 @@ export class MidSemesterModalComponent {
       return 'by clicking on a backdrop';
     } else {
       return `with: ${reason}`;
+    }
+  }
+
+  loadStudent() {
+    this.studentService.getStudent(this.studentEmail).subscribe((student: Student) => {
+      console.log(student);
+      if (student) {
+        this.midSemesterReview.student = student;
+      }
+    });
+  }
+
+  onEmailChange(newValue) {
+    const validEmailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (validEmailRegEx.test(newValue)) {
+      this.validEmail = true;
+    } else {
+      this.validEmail = false;
     }
   }
 

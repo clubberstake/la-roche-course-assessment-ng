@@ -9,6 +9,7 @@ import { CourseInformation } from './classes/course-information';
 import { CourseSLOs } from './classes/course-SLOs';
 import { CourseService } from './service/course-service.service';
 import { Instructor } from '../site-admin/classes/instructor';
+import { Student } from '../site-admin/classes/student';
 
 @Component({
   selector: 'app-course-assessment-worksheet',
@@ -36,7 +37,6 @@ export class CourseAssessmentWorksheetComponent implements OnInit {
 
   loadCourseInformationList() {
     this.courseService.getCourseList().subscribe((courses: CourseInformation[]) => {
-      console.log(courses);
       this.courseList = courses.sort((a: CourseInformation, b: CourseInformation) => {
         if (a.id < b.id) {
           return -1;
@@ -110,38 +110,44 @@ export class CourseAssessmentWorksheetComponent implements OnInit {
   }
 
   resetMidSemesterItem() {
-    this.midSemesterReview = new SemesterReview(0, '', '', new SemesterLearningIssues(false, false, false, false, false, false, false, false, false, false), '', '');
+    this.midSemesterReview = new SemesterReview(new Student(0, '', null, '', '', '', '', '', '', '', '', '', '', ''),
+      '', new SemesterLearningIssues(false, false, false, false, false, false, false, false, false, false), '', '');
   }
 
   onMidSemesterItemSaved(saved: Boolean) {
     if (saved) {
       this.courseAssessment.midSemesterReviews.push(this.midSemesterReview);
-      console.log(this.courseAssessment);
-      console.log("huh", JSON.stringify(this.courseAssessment));
     }
     this.resetMidSemesterItem();
   }
 
   hasMidSemesterReviews(): boolean {
-    return this.courseAssessment.midSemesterReviews.length > 0 ? true : false;
+    if (this.courseAssessment.midSemesterReviews) {
+      return this.courseAssessment.midSemesterReviews.length > 0 ? true : false;
+    }
+
+    return false;
   }
 
   resetEndSemesterItem() {
-    this.endSemesterReview = new SemesterReview(0, '', '', new SemesterLearningIssues(false, false, false, false, false, false, false, false, false, false), '', '');
+    this.endSemesterReview = new SemesterReview(new Student(0, '', null, '', '', '', '', '', '', '', '', '', '', ''),
+      '', new SemesterLearningIssues(false, false, false, false, false, false, false, false, false, false), '', '');
   }
 
   onEndSemesterItemSaved(saved: Boolean) {
     if (saved) {
       this.courseAssessment.endSemesterReviews.push(this.endSemesterReview);
-      console.log(this.courseAssessment);
-      console.log("huh", JSON.stringify(this.courseAssessment));
       this.calculateGrades();
     }
     this.resetEndSemesterItem();
   }
 
   hasEndSemesterReviews(): boolean {
-    return this.courseAssessment.endSemesterReviews.length > 0 ? true : false;
+    if (this.courseAssessment.endSemesterReviews) {
+      return this.courseAssessment.endSemesterReviews.length > 0 ? true : false;
+    }
+
+    return false;
   }
 
   setCourse() {
@@ -150,9 +156,9 @@ export class CourseAssessmentWorksheetComponent implements OnInit {
 
   loadCourse() {
     this.courseService.loadCourse(this.selectedCourse.id).subscribe((courseAssessment: CourseAssessment) => {
-      console.log(courseAssessment);
       if (courseAssessment) {
         this.courseAssessment = courseAssessment;
+        console.log(this.courseAssessment);
       }
       else {
         this.createEmptyCourse();

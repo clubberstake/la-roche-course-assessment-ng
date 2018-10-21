@@ -56,12 +56,15 @@ export class StudentAdminComponent implements OnInit {
 
   saveStudent() {
     this.student.emailAddress = this.studentEmail;
+    console.log(this.student);
     this.studentService.saveStudent(this.student);
     this.validEmail = false;
   }
 
-  onNameChange() {
-    this.onEmailChange(this.studentEmail); // only re-enable the button is something acutally was typed.
+  onNameChange() { // only re-enable the button is something acutally was typed and email valid.
+    if (this.validEmail) {
+      this.existingStudent = false;
+    } 
   }
 
   deleteStudent() {

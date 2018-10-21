@@ -9,18 +9,17 @@
   <div class="modal-body">
     <form>
       <div class="form-group">
-        <label for="studentId">Student Id</label><br>
-        <input class="form-control" name="studentId" maxlength="7" [(ngModel)]="midSemesterReview.studentId">
-        <!-- <div class="input-group">
-          <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
-          </div>
-        </div> -->
+        <div class="searchTitle">
+          <span class="title">Enter student email address:</span>
+          <span class="spanSpacer"></span>
+          <button class="btn btn-lg btn-info" (click)="loadStudent()" [disabled]="!validEmail">Find Student</button>
+        </div>
+        <input placeholder="Enter valid email and click Find Student" type="email" name="studentEmail" class="form-control info"
+          [(ngModel)]="studentEmail" (ngModelChange)="onEmailChange($event)">
       </div>
       <div class="form-group">
         <label for="studentName">Student Name</label><br>
-        <input class="form-control" name="studentName" [(ngModel)]="midSemesterReview.studentName">
+        <input class="form-control" name="studentName" [(ngModel)]="midSemesterReview.student.studentName" readonly>
       </div>
       <div class="learningIssuesContainer">
         <div class="form-group">

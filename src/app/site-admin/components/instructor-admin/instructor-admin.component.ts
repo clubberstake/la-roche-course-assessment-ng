@@ -61,7 +61,9 @@ export class InstructorAdminComponent implements OnInit {
   }
 
   onNameChange() {
-    this.onEmailChange(this.instructorEmail); // only re-enable the button is something acutally was typed.
+    if (this.validEmail) {
+      this.existingInstructor = false;
+    } 
   }
 
   deleteInstructor() {

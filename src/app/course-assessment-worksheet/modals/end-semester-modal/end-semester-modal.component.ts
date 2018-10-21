@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { SemesterReview, SemesterLearningIssues } from '../../classes/course-semester-evaluation';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { Student } from 'src/app/site-admin/classes/student';
+import { StudentService } from 'src/app/services/student.service';
 
 @Component({
   selector: 'app-end-semester-modal',
@@ -19,9 +21,12 @@ export class EndSemesterModalComponent implements OnInit {
 
   gradeForm: FormGroup;
   grades = ['A', 'B', 'C', 'D', 'F'];
+  studentEmail: String;
+  validEmail: boolean;
 
-  constructor(private modalService: NgbModal, private fb: FormBuilder) {
-    this.endSemesterReview = new SemesterReview(0, '', '', new SemesterLearningIssues(false, false, false, false, false, false, false, false, false, false), '', '');
+  constructor(private modalService: NgbModal, private fb: FormBuilder, private studentService: StudentService) {
+    this.endSemesterReview = new SemesterReview(new Student(0, '', null, '', '', '', '', '', '', '', '', '', '', ''),
+      '', new SemesterLearningIssues(false, false, false, false, false, false, false, false, false, false), '', '');
   }
 
   ngOnInit() {
@@ -48,6 +53,24 @@ export class EndSemesterModalComponent implements OnInit {
       return 'by clicking on a backdrop';
     } else {
       return `with: ${reason}`;
+    }
+  }
+
+  loadStudent() {
+    this.studentService.getStudent(this.studentEmail).subscribe((student: Student) => {
+      console.log(student);
+      if (student) {
+        this.endSemesterReview.student = student;
+      }
+    });
+  }
+
+  onEmailChange(newValue) {
+    const validEmailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (validEmailRegEx.test(newValue)) {
+      this.validEmail = true;
+    } else {
+      this.validEmail = false;
     }
   }
 
