@@ -3,7 +3,7 @@ import { Instructor } from "src/app/site-admin/classes/instructor";
 
 export class CourseInformation {
     constructor(public id: number,
-        public courseNumberAndSection: string, public syllabus: FileStorage,
+        public courseNumberSection: string, public syllabus: FileStorage,
         public semester: string, public year: string,
         public courseTitle: string, public instructor: Instructor) { }
 }

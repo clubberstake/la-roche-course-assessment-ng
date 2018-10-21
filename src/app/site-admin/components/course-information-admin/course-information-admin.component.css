@@ -3,6 +3,11 @@
     flex-direction: row;
 }
 
+.siteAdminFlexboxColumnContainer {
+    display: flex;
+    flex-direction: column;
+}
+
 .itemContainer {
     display: flex;
     flex-direction: column;
@@ -20,10 +25,40 @@
     font-weight: bolder;
 }
 
+.italics{
+    font-style: italic;
+}
+
 .saveButton {
     margin: 10px;
 }
 
 .spanSpacer {
     margin-right: 10px;
+}
+
+.selectorMargin {
+    margin-top: 5px;
+}
+
+.spaceAroundDropDowns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flexGrowOne {
+    flex-grow: 1;
+}
+
+.flexGrowTwo {
+    flex-grow: 2;
+}
+
+.searchTitle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }

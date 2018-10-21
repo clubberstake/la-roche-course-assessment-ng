@@ -13,10 +13,6 @@ export class UrlService {
     this.baseUrl = "http://localhost:8080";
   }
 
-  public getCourseListURL(): string {
-    return this.baseUrl + '/course';
-  }
-
   public getSaveCourseURL(): string {
     return this.baseUrl + '/courseAssessment';
   }
@@ -55,5 +51,25 @@ export class UrlService {
 
   public getInstructorURL(emailAddress: String): string {
     return this.baseUrl + '/instructor/' + emailAddress;
+  }
+
+  public getInstructorsURL(): string {
+    return this.baseUrl + '/instructor';
+  }
+
+  public getcourseNumberAndSectionURL(courseNumberAndSection: string, semester: string, year: string): string {
+    return this.baseUrl + '/courseInformation/' + courseNumberAndSection + '/' + semester + '/' + year;
+  }
+
+  public saveCourseInformationURL(): string {
+    return this.baseUrl + '/courseInformation';
+  }
+
+  public deleteCourseInformationURL(id: number): string {
+    return this.baseUrl + '/courseInformation/' + id;
+  }
+
+  public getCourseListURL(): string {
+    return this.baseUrl + '/courseInformation';
   }
 }

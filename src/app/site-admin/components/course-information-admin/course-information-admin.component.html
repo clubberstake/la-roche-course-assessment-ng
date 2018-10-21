@@ -1,7 +1,65 @@
 <div class="siteAdminFlexboxRowContainer">
   <div class="itemContainer">
-    <p>
-      course-information-admin works!
-    </p>
+    <div class="searchTitle">
+      <div>
+        <span class="title">Add/Edit Course Information:</span><br>
+        <span class="italics">Must be unique by course/section + semester + year</span>
+      </div>
+      <span class="spanSpacer"></span>
+      <button class="btn btn-lg btn-info" (click)="loadCourseInformation()" [disabled]="!validCourseSection">Find
+        Course Information</button>
+    </div>
+    <div class="selectorMargin">
+      <div class="spaceAroundDropDowns">
+        <div class="flexGrowTwo">
+          <span>Please add/edit course and section:</span><br>
+          <input placeholder="Enter one word like 'CSCI4098'" type="email" class="form-control info" [(ngModel)]="courseSection"
+            (ngModelChange)="onCourseSectionChange($event)">
+        </div>
+        <span class="spanSpacer"></span>
+        <div class="siteAdminFlexboxColumnContainer">
+          <div>
+            <form [formGroup]="semesterForm">
+              <label for="semester">Select Semester:</label>
+              <span class="spanSpacer"></span>
+              <select formControlName="semesterControl" (change)="setSemester($event.target.value)">
+                <option [value]="semester" *ngFor="let semester of semesters"> {{semester}}</option>
+              </select>
+            </form>
+          </div>
+          <div>
+            <form [formGroup]="yearForm">
+              <label for="year">Select Year:</label>
+              <span class="spanSpacer"></span>
+              <select formControlName="yearControl" (change)="setYear($event.target.value)">
+                <option [value]="year" *ngFor="let year of years"> {{year}}</option>
+              </select>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <span>Please enter course title:</span><br>
+      <input class="form-control info" [(ngModel)]="courseInformation.courseTitle" (ngModelChange)="onNameChange()"
+        placeholder="{{existingCourseInformation ? '' : 'New Course Information, please add full name'}}">
+    </div>
+    <div class="selectorMargin">
+      <div class="form-group">
+        <form [formGroup]="instructorForm">
+          <label for="instructor">Select Instructor:</label>
+          <select formControlName="instructorControl" (change)="setInstructor($event.target.value)">
+            <option [value]="instructor.id" *ngFor="let instructor of instructors"> {{instructor.name}}</option>
+          </select>
+        </form>
+      </div>
+    </div>
+    <div class="saveButton">
+      <button class="btn btn-lg btn-dark" (click)="saveCourseInformation()" [disabled]="!validCourseSection">Save
+        Course Information</button>
+      <span class="spanSpacer"></span>
+      <button class="btn btn-lg btn-danger" (click)="deleteCourseInformation()" [disabled]="!courseInformationLoaded">Delete
+        Course Information</button>
+    </div>
   </div>
 </div>

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Instructor } from '../site-admin/classes/instructor';
 import { HttpClient } from '@angular/common/http';
 import { UrlService } from './url-service.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +30,9 @@ export class InstructorService {
 
   getInstructor(emailAddress: String): any {
     return this.http.get<Instructor>(this.urlService.getInstructorURL(emailAddress));
+  }
+
+  getInstructorList(): Observable<Array<Instructor>> {
+    return this.http.get<Array<Instructor>>(this.urlService.getInstructorsURL());
   }
 }

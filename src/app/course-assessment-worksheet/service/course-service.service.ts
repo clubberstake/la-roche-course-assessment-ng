@@ -14,12 +14,10 @@ export class CourseService {
   constructor(private http: HttpClient, private urlService: UrlService) { }
 
   public getCourseList(): Observable<Array<CourseInformation>> {
-    console.log('getting course list');
     return this.http.get<Array<CourseInformation>>(this.urlService.getCourseListURL());
   };
 
   public saveCourse(courseAssessment: CourseAssessment) {
-    console.log("PUTing course", JSON.stringify(courseAssessment));
     var courseAssessmentId = -1;
 
     var response = this.http
@@ -53,7 +51,6 @@ export class CourseService {
   }
 
   public loadCourse(courseId: number): Observable<CourseAssessment> {
-    console.log('getting course assessment');
     return this.http.get<CourseAssessment>(this.urlService.getCourseAssessmentURL(courseId));
   }
 }

@@ -5,7 +5,7 @@
       <div>
         <label class="paddedLabel">Course Section/#:</label>
         <select [(ngModel)]="selectedCourse" (change)="setCourse()">
-          <option [ngValue]="course" *ngFor="let course of courseList"> {{course.courseNumberAndSection}}</option>
+          <option [ngValue]="course" *ngFor="let course of courseList"> {{course.courseNumberSection}}</option>
         </select>
       </div>
       <div>
