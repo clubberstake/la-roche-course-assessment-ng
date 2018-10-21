@@ -11,11 +11,25 @@ import { SemesterReview } from '../classes/course-semester-evaluation';
 })
 export class CourseService {
 
+
   constructor(private http: HttpClient, private urlService: UrlService) { }
 
   public getCourseList(): Observable<Array<CourseInformation>> {
     return this.http.get<Array<CourseInformation>>(this.urlService.getCourseListURL());
   };
+
+  public archiveCourse(courseInformation: CourseInformation): any {
+    var courseInformationId;
+
+    var response = this.http
+      .post<number>(this.urlService.getArchiveCourseURL(), courseInformation)
+      .subscribe(res => {
+        console.log(res);
+        courseInformationId = res;
+      });
+
+    return courseInformationId;
+  }
 
   public saveCourse(courseAssessment: CourseAssessment) {
     var courseAssessmentId = -1;

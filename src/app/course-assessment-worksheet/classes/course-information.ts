@@ -5,5 +5,5 @@ export class CourseInformation {
     constructor(public id: number,
         public courseNumberSection: string, public syllabus: FileStorage,
         public semester: string, public year: string,
-        public courseTitle: string, public instructor: Instructor) { }
+        public courseTitle: string, public archived: boolean, public instructor: Instructor) { }
 }

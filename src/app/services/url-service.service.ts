@@ -72,4 +72,8 @@ export class UrlService {
   public getCourseListURL(): string {
     return this.baseUrl + '/courseInformation';
   }
+
+  public getArchiveCourseURL(): string {
+    return this.baseUrl + '/courseInformation/archive';
+  }
 }

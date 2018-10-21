@@ -1,0 +1,49 @@
+.siteAdminFlexboxRowContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.siteAdminFlexboxColumnContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.itemContainer {
+    display: flex;
+    flex-direction: column;
+    border: 3px solid #000;
+    margin-left: 5px;
+    margin-right: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: "Open Sans", sans-serif;
+}
+
+.title {
+    font-weight: bolder;
+}
+
+.italics{
+    font-style: italic;
+}
+
+.saveButton {
+    margin: 10px;
+}
+
+.spanSpacer {
+    margin-right: 10px;
+}
+
+.selectorMargin {
+    margin-top: 5px;
+}
+
+.spaceAroundDropDowns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}

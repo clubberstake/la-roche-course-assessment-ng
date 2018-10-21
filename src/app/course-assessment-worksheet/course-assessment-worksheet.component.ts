@@ -36,8 +36,15 @@ export class CourseAssessmentWorksheetComponent implements OnInit {
   }
 
   loadCourseInformationList() {
+    this.courseList = new Array<CourseInformation>();
     this.courseService.getCourseList().subscribe((courses: CourseInformation[]) => {
-      this.courseList = courses.sort((a: CourseInformation, b: CourseInformation) => {
+      for (let course of courses) {
+        if (!course.archived) {
+          this.courseList.push(course);
+        }
+      }
+
+      this.courseList = this.courseList.sort((a: CourseInformation, b: CourseInformation) => {
         if (a.id < b.id) {
           return -1;
         }
@@ -168,7 +175,7 @@ export class CourseAssessmentWorksheetComponent implements OnInit {
   }
 
   createEmptyCourse() {
-    var courseInformation = new CourseInformation(0, "", null, "", "", "", new Instructor(0, '', ''));
+    var courseInformation = new CourseInformation(0, "", null, "", "", "", false, new Instructor(0, '', ''));
     var courseSLOs = new CourseSLOs(0, false, false, false, false, false);
     var cafs1Info = new Cafs1Info(0, "", "", "", "", "");
     var cafs2Info = new Cafs2Info(0, "", "", "", 0, 0, 0, 0, 0);

@@ -1,0 +1,31 @@
+<div class="courseInfoAndChangesFlexboxRootContainer">
+  <div class="itemContainer">
+    <span class="title">Course Information</span>
+    <div>
+      <label class="paddedLabel">Course Section/#:</label>
+      <span class="spanSpacer"></span>
+      <select [(ngModel)]="selectedCourse">
+        <option [ngValue]="course" *ngFor="let course of courseList"> {{course.courseNumberSection}} ->
+          {{course.semester}}, {{course.year}}</option>
+      </select>
+    </div>
+    <div>
+      <label class="paddedLabel">Semester & Year:</label>
+      <span class="spanSpacer"></span>
+      <span>{{selectedCourse.semester}} {{selectedCourse.year}} </span>
+    </div>
+    <div>
+      <label class="paddedLabel">Course Title:</label>
+      <span class="spanSpacer"></span>
+      <span>{{selectedCourse.courseTitle}}</span>
+    </div>
+    <div>
+      <label class="paddedLabel">Instructor:</label>
+      <span class="spanSpacer"></span>
+      <span>{{selectedCourse.instructor.name}}</span>
+    </div>
+    <div class="saveButton">
+      <button class="btn btn-lg btn-dark" (click)="archiveCourse()">Archive Course</button>
+    </div>
+  </div>
+</div>

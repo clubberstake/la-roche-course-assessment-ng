@@ -7,3 +7,7 @@
     display: flex;
     flex-direction: row;
 }
+
+.marginBottom {
+    margin-bottom: 50px;
+  }

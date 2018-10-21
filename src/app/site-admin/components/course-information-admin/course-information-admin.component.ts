@@ -36,7 +36,7 @@ export class CourseInformationAdminComponent implements OnInit {
   }
 
   private resetCourseSection() {
-    this.courseInformation = new CourseInformation(0, '', null, '', '', '', null);
+    this.courseInformation = new CourseInformation(0, '', null, '', '', '', false, null);
     this.existingCourseSection = true;
     this.courseSectionLoaded = false;
   }
@@ -117,7 +117,7 @@ export class CourseInformationAdminComponent implements OnInit {
   }
 
   onNameChange() {
-    if (this.validCourseSection){
+    if (this.validCourseSection) {
       this.existingCourseSection = false;
     }
   }

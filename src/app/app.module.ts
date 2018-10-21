@@ -19,6 +19,7 @@ import { EndSemesterModalComponent } from './course-assessment-worksheet/modals/
 import { StudentAdminComponent } from './site-admin/components/student-admin/student-admin.component';
 import { InstructorAdminComponent } from './site-admin/components/instructor-admin/instructor-admin.component';
 import { CourseInformationAdminComponent } from './site-admin/components/course-information-admin/course-information-admin.component';
+import { ArchiveCourseComponent } from './site-admin/components/archive-course/archive-course.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { CourseInformationAdminComponent } from './site-admin/components/course-
     EndSemesterModalComponent,
     StudentAdminComponent,
     InstructorAdminComponent,
-    CourseInformationAdminComponent
+    CourseInformationAdminComponent,
+    ArchiveCourseComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, HttpModule, FormsModule, AppRoutingModule, NgbModule, ReactiveFormsModule
