@@ -159,6 +159,7 @@ export class CourseAssessmentWorksheetComponent implements OnInit {
   }
 
   setCourse() {
+    this.createEmptyCourse();
     this.courseAssessment.courseInformation = this.selectedCourse;
   }
 
@@ -193,8 +194,7 @@ export class CourseAssessmentWorksheetComponent implements OnInit {
 
   downloadSyllabus() {
     var fileContents = String(this.courseAssessment.courseInformation.syllabus.fileContent);
-    var filename = (this.courseAssessment.courseInformation.syllabus.fileName);
-    var filetype = this.courseAssessment.courseInformation.syllabus.fileType;
+    var filename = this.courseAssessment.courseInformation.syllabus.fileName;
 
     var a = document.createElement("a");
     var dataURI = fileContents;

@@ -1,3 +1,212 @@
-<p>
-  course-archive works!
-</p>
+<div class="courseAssessmentWorksheetContainer">
+  <div class="courseInfoAndChangesFlexboxRootContainer">
+    <div class="itemContainer">
+      <span class="title">Course Information</span>
+      <div>
+        <label class="paddedLabel">Course Section/#:</label>
+        <select [(ngModel)]="selectedCourse" (change)="setCourse()">
+          <option [ngValue]="course" *ngFor="let course of courseList"> {{course.courseNumberSection}} ->
+            {{course.semester}}, {{course.year}}</option>
+        </select>
+      </div>
+      <div>
+        <label class="paddedLabel">Semester & Year:</label>
+        <span>{{courseAssessment.courseInformation.semester}} {{courseAssessment.courseInformation.year}} </span>
+      </div>
+      <div>
+        <label class="paddedLabel">Course Title:</label>
+        <span>{{courseAssessment.courseInformation.courseTitle}}</span>
+      </div>
+      <div>
+        <label class="paddedLabel">Instructor:</label>
+        <span>{{courseAssessment.courseInformation.instructor.name}}</span>
+      </div>
+      <div class="saveButton">
+        <button class="btn btn-lg btn-light" (click)="downloadSyllabus()">Download Syllabus</button>
+        <span class="spanSpacer"></span>
+        <button class="btn btn-lg btn-dark" (click)="loadCourse()">Load Course</button>
+      </div>
+    </div>
+    <div class="itemContainer">
+      <span class="title">SLO's Addressed in this semester</span>
+      <div>
+        <label class="paddedLabel">#1 Knowledge Base</label>
+        <input class="inputCheckmark" #knowledgeBaseCheckBox id="knowledgeBaseCheckBox" type="checkbox" (change)="knowledgeBaseChecked(knowledgeBaseCheckBox.checked)"
+          [(ngModel)]="courseAssessment.courseSLOs.slo1" ng-true-value="'true'" ng-false-value="'false'" disabled="disabled">
+      </div>
+      <div>
+        <label class="paddedLabel">#2 Lab Skills</label>
+        <input class="inputCheckmark" #labSkillsCheckBox id="labSkillsCheckBox" type="checkbox" (change)="labSkillsChecked(labSkillsCheckBox.checked)"
+          [(ngModel)]="courseAssessment.courseSLOs.slo2" ng-true-value="'true'" ng-false-value="'false'" disabled="disabled">
+      </div>
+      <div>
+        <label class="paddedLabel">#3 Practice</label>
+        <input class="inputCheckmark" #practiceCheckBox id="practiceCheckBox" type="checkbox" (change)="practiceChecked(practiceCheckBox.checked)"
+          [(ngModel)]="courseAssessment.courseSLOs.slo3" ng-true-value="'true'" ng-false-value="'false'" disabled="disabled">
+      </div>
+      <div>
+        <label class="paddedLabel">#4 Societal Connects</label>
+        <input class="inputCheckmark" #societalConnectsCheckBox id="societalConnectsCheckBox" type="checkbox" (change)="societalConnectsChecked(societalConnectsCheckBox.checked)"
+          [(ngModel)]="courseAssessment.courseSLOs.slo4" ng-true-value="'true'" ng-false-value="'false'" disabled="disabled">
+      </div>
+      <div>
+        <label class="paddedLabel">#5 Capstone</label>
+        <input class="inputCheckmark" #capstoneCheckBox id="capstoneCheckBox" type="checkbox" (change)="capstoneChecked(capstoneCheckBox.checked)"
+          [(ngModel)]="courseAssessment.courseSLOs.slo5" ng-true-value="'true'" ng-false-value="'false'" disabled="disabled">
+      </div>
+    </div>
+  </div>
+  <div class="courseInfoAndChangesFlexboxRootContainer">
+    <div class="itemContainer">
+      <span class="title">I. Course Changes Implemented this Semester</span>
+      <div>
+        <span>New SLO emphasis added:</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs1Info.newSLOs" readonly></textarea>
+      </div>
+      <div>
+        <span>Upgrades to course content:</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs1Info.upgrades" readonly></textarea>
+      </div>
+      <div>
+        <span>Pedagogy enhancements:</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs1Info.enhancements" readonly></textarea>
+      </div>
+      <div>
+        <span>Modifications to student assessment measures:</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs1Info.modifications" readonly></textarea>
+      </div>
+      <div>
+        <span>Other course changes implemented this semester:</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs1Info.other" readonly></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="courseInfoAndChangesFlexboxRootContainer">
+    <div class="itemContainer">
+      <span class="title">II. Student Performance Findings</span>
+      <div>
+        <span>Chemistry concept carry-over from previous semesters, as demonstrated on pre-course <br> assessment (if
+          applicable):</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs2Info.chemConcept" readonly></textarea>
+      </div>
+      <div>
+        <span>Were objectives and content describved in the Syllabuss completely covered this semester?</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs2Info.objectivesContent" readonly></textarea>
+      </div>
+      <div>
+        <span>Overall Student Performance (calculates as grades are entered in section V. below)</span><br>
+        <div class="gradesContainer">
+          <div class="gradeContainer">
+            <div class="gradeLetter">A</div>
+            <div class="gradeCount">{{courseAssessment.cafs2Info.percentA}}</div>
+          </div>
+          <div class="gradeContainer">
+            <div class="gradeLetter">B</div>
+            <div class="gradeCount">{{courseAssessment.cafs2Info.percentB}}</div>
+          </div>
+          <div class="gradeContainer">
+            <div class="gradeLetter">C</div>
+            <div class="gradeCount">{{courseAssessment.cafs2Info.percentC}}</div>
+          </div>
+          <div class="gradeContainer">
+            <div class="gradeLetter">D</div>
+            <div class="gradeCount">{{courseAssessment.cafs2Info.percentD}}</div>
+          </div>
+          <div class="gradeContainer">
+            <div class="gradeLetter">F</div>
+            <div class="gradeCount">{{courseAssessment.cafs2Info.percentF}}</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <span>General comments about student performance:</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs2Info.generalComments" readonly></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="courseInfoAndChangesFlexboxRootContainer">
+    <div class="itemContainer">
+      <span class="title">III. Recommended changes to Implement for next offering</span>
+      <div>
+        <span>Course prerequisites:</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs3Info.coursePreReq" readonly></textarea>
+      </div>
+      <div>
+        <span>Textbooks/other required materials:</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs3Info.textbooks" readonly></textarea>
+      </div>
+      <div>
+        <span>Student assessment measures:</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs3Info.studentAsse" readonly></textarea>
+      </div>
+      <div>
+        <span>Pedagogy:</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs3Info.pedagogy" readonly></textarea>
+      </div>
+      <div>
+        <span>Faculty/guest instructors:</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs3Info.faculty" readonly></textarea>
+      </div>
+      <div>
+        <span>Minor and capital equipment needs:</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs3Info.minorCapitalEq" readonly></textarea>
+      </div>
+      <div>
+        <span>Other recommendations:</span><br>
+        <textarea class="input" [(ngModel)]="courseAssessment.cafs3Info.other"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="courseInfoAndChangesFlexboxRootContainer">
+    <div class="itemContainer">
+      <div class="semesterReviewTitle">
+        <span class="semesterReviewTitleText">IV. Mid-Semester Individual Performance and evaluation</span>
+      </div>
+      <div *ngIf="hasMidSemesterReviews()" class="semesterReviewsContainer">
+        <div class="semesterReviewContainer">
+          <div class="semesterReviewHeader">ID#</div>
+          <div class="semesterReviewHeader">Learning Issues</div>
+          <div class="midSemesterReviewHeaderTextArea">Instructor Interaction</div>
+          <div class="midSemesterReviewHeaderTextAreaNoBorder">Instructor Evaluation</div>
+        </div>
+        <div class="semesterReviewContainer" *ngFor="let review of courseAssessment.midSemesterReviews">
+          <div class="semesterReviewSelector">{{review.student.studentName}}</div>
+          <div class="semesterReviewSelector">{{calculateSemesterLearningIssues(review.semesterLearningIssues)}}</div>
+          <div class="midSemesterReviewTextArea">{{review.semesterInstructorInteractions}}</div>
+          <div class="midSemesterReviewTextAreaNoBorder">{{review.semesterInstructorNotes}}</div>
+        </div>
+      </div>
+      <div *ngIf="!hasMidSemesterReviews()">
+        <span>No Mid-Semester Reviews were entered button above</span>
+      </div>
+    </div>
+  </div>
+  <div class="courseInfoAndChangesFlexboxRootContainer">
+    <div class="itemContainer">
+      <div class="semesterReviewTitle">
+        <span class="semesterReviewTitleText">V. Summative Individual Performance and evaluation</span>
+      </div>
+      <div *ngIf="hasEndSemesterReviews()" class="semesterReviewsContainer">
+        <div class="semesterReviewContainer">
+          <div class="endSemesterReviewHeader">ID#</div>
+          <div class="endSemesterReviewHeader">Grade</div>
+          <div class="endSemesterReviewHeader">Learning Issues</div>
+          <div class="endSemesterReviewHeaderTextArea">Instructor Interaction</div>
+          <div class="endSemesterReviewHeaderTextAreaNoBorder">Instructor Evaluation</div>
+        </div>
+        <div class="semesterReviewContainer" *ngFor="let review of courseAssessment.endSemesterReviews">
+          <div class="semesterReviewSelector">{{review.student.studentName}}</div>
+          <div class="semesterReviewSelector">{{review.grade}}</div>
+          <div class="semesterReviewSelector">{{calculateSemesterLearningIssues(review.semesterLearningIssues)}}</div>
+          <div class="endSemesterReviewTextArea">{{review.semesterInstructorInteractions}}</div>
+          <div class="endSemesterReviewTextAreaNoBorder">{{review.semesterInstructorNotes}}</div>
+        </div>
+      </div>
+      <div *ngIf="!hasEndSemesterReviews()">
+        <span>No End-Semester Reviews were entered button above</span>
+      </div>
+    </div>
+  </div>
+  <div class="marginBottom"></div>
+  <!--spacer for footer -->
+</div>
