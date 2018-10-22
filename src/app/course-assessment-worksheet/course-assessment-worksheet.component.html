@@ -5,7 +5,8 @@
       <div>
         <label class="paddedLabel">Course Section/#:</label>
         <select [(ngModel)]="selectedCourse" (change)="setCourse()">
-          <option [ngValue]="course" *ngFor="let course of courseList"> {{course.courseNumberSection}} -> {{course.semester}}, {{course.year}}</option>
+          <option [ngValue]="course" *ngFor="let course of courseList"> {{course.courseNumberSection}} ->
+            {{course.semester}}, {{course.year}}</option>
         </select>
       </div>
       <div>
@@ -20,7 +21,12 @@
         <label class="paddedLabel">Instructor:</label>
         <span>{{courseAssessment.courseInformation.instructor.name}}</span>
       </div>
+
+      <!-- <img src={{courseAssessment.courseInformation.syllabus.fileContent}} alt="No Image" class="img-thumbnail"> -->
+
       <div class="saveButton">
+        <button class="btn btn-lg btn-light" (click)="downloadSyllabus()">Download Syllabus</button>
+        <span class="spanSpacer"></span>
         <button class="btn btn-lg btn-dark" (click)="loadCourse()">Load Course</button>
       </div>
     </div>

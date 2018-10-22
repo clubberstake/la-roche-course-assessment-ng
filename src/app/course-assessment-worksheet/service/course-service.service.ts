@@ -32,13 +32,14 @@ export class CourseService {
   }
 
   public saveCourse(courseAssessment: CourseAssessment) {
+    console.log(courseAssessment);
     var courseAssessmentId = -1;
 
     var response = this.http
       .put<number>(this.urlService.getSaveCourseURL(), courseAssessment)
       .subscribe(res => {
         console.log(res);
-        courseAssessmentId = res;
+        courseAssessment.id = res;
       });
     return courseAssessmentId;
   }

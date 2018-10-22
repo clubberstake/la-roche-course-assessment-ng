@@ -10,6 +10,7 @@ import { CourseSLOs } from './classes/course-SLOs';
 import { CourseService } from './service/course-service.service';
 import { Instructor } from '../site-admin/classes/instructor';
 import { Student } from '../site-admin/classes/student';
+import { FileStorage } from './classes/file-storage';
 
 @Component({
   selector: 'app-course-assessment-worksheet',
@@ -187,6 +188,23 @@ export class CourseAssessmentWorksheetComponent implements OnInit {
   }
 
   saveCourse() {
-    this.courseAssessment.id = this.courseService.saveCourse(this.courseAssessment);
+    this.courseService.saveCourse(this.courseAssessment);
+  }
+
+  downloadSyllabus() {
+    var fileContents = String(this.courseAssessment.courseInformation.syllabus.fileContent);
+    var filename = (this.courseAssessment.courseInformation.syllabus.fileName);
+    var filetype = this.courseAssessment.courseInformation.syllabus.fileType;
+
+    var a = document.createElement("a");
+    var dataURI = fileContents;
+    a.href = dataURI;
+    a['download'] = filename;
+    var e = document.createEvent("MouseEvents");
+    // Use of deprecated function to satisfy TypeScript.
+    e.initMouseEvent("click", true, false,
+      document.defaultView, 0, 0, 0, 0, 0,
+      false, false, false, false, 0, null);
+    a.dispatchEvent(e);
   }
 }

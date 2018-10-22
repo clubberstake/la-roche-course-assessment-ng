@@ -4,6 +4,7 @@ import { CourseInformationService } from 'src/app/services/course-information.se
 import { Instructor } from '../../classes/instructor';
 import { InstructorService } from 'src/app/services/instructor.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { FileStorage } from 'src/app/course-assessment-worksheet/classes/file-storage';
 
 @Component({
   selector: 'app-course-information-admin',
@@ -139,5 +140,38 @@ export class CourseInformationAdminComponent implements OnInit {
 
   setSemester(value: any) {
     this.selectedSemester = value;
+  }
+
+  onFileSelected(event) {
+
+    var selectedPhoto = <File>event.target.files[0];
+
+    var fileReader = new FileReader();
+    var fileStorage = new FileStorage(0, "", "", "");
+    if (fileReader && selectedPhoto) {
+      fileStorage.fileName = selectedPhoto.name;
+      fileStorage.fileType = selectedPhoto.type;
+      fileReader.onload = function () {
+        fileStorage.fileContent = fileReader.result.toString();
+      };
+
+      fileReader.readAsDataURL(selectedPhoto);
+      this.sleep(300).then(() => {
+        this.courseInformation.syllabus = {
+          id: this.courseInformation.syllabus.id,
+          fileContent: fileStorage.fileContent,
+          fileName: fileStorage.fileName,
+          fileType: fileStorage.fileType
+        };
+        console.log(this.courseInformation.syllabus);
+      });
+    }
+    else {
+      this.courseInformation.syllabus = new FileStorage(0, '', '', '');
+    }
+  }
+
+  private sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 }
