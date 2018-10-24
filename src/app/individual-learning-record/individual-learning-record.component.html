@@ -1,3 +1,88 @@
-<p>
-  individual-learning-record works!
-</p>
+<div class="individualLearningRecordFlexboxRootContainer">
+  <div class="itemContainer"> 
+    <div class="searchTitle">
+      <span class="title">Biographical Information</span>
+      <span class="spanSpacer"></span>
+      <button class="btn btn-lg btn-info" (click)="loadStudent()" [disabled]="!validEmail">Find Student</button>
+    </div>
+    <div>
+      <span>Please enter a students email:</span><br>
+      <input placeholder="Enter valid email and click Find Student" type="email" class="form-control info" [(ngModel)]="studentEmail"
+        (ngModelChange)="onEmailChange($event)">
+    </div>
+    <div>
+      <span>Full name:</span><br>
+      <input class="form-control info" [(ngModel)]="student.studentName" placeholder="{{existingStudent ? '' : 'Load Student to see full name'}}"
+        readonly>
+    </div>
+    <div>
+      <span>Please enter the students major:</span><br>
+      <input class="form-control info" [(ngModel)]="student.studentMajor" [disabled]="!validEmail" placeholder="{{validEmail ? 'New Student, please enter' : 'Load Student to see major'}}">
+    </div>
+    <div class="siteAdminFlexboxColumnContainer">
+      <div class="dropDownMarginTop">
+        <form [formGroup]="semesterForm">
+          <label for="semester">Graduating Semester:</label>
+          <span class="spanSpacer"></span>
+          <select formControlName="semesterControl" (change)="setSemester($event.target.value)">
+            <option [value]="semester" *ngFor="let semester of semesters"> {{semester}}</option>
+          </select>
+        </form>
+      </div>
+      <div>
+        <form [formGroup]="yearForm">
+          <label for="year">Graduating Year:</label>
+          <span class="spanSpacer"></span>
+          <select formControlName="yearControl" (change)="setYear($event.target.value)">
+            <option [value]="year" *ngFor="let year of years"> {{year}}</option>
+          </select>
+        </form>
+      </div>
+      <div>
+        <img src={{student.file.fileContent}} alt="No Image" height="200" width="200" class="img-thumbnail">
+      </div>
+      <div class="dropDownMarginTop">
+        <label class="paddedLabel">Upload Picture:</label>
+        <input name="syllabus" type="file" [(ngModel)]="student.file" (change)="onFileSelected($event)">
+      </div>
+    </div>
+    <div class="searchTitle">
+      <div class="dropDownMarginTop">
+        <span class="title">Admissions, Placement Information</span>
+      </div>
+    </div>
+    <div>
+      <span>Please enter the students math placement testing results:</span><br>
+      <input class="form-control info" [(ngModel)]="student.studentMathGrade" [disabled]="!validEmail" placeholder="{{validEmail ? 'New Student, please enter' : 'Load Student to see math placement'}}">
+    </div>
+    <div>
+      <span>If applicable, please enter the students sport:</span><br>
+      <input class="form-control info" [(ngModel)]="student.studentAthletics" [disabled]="!validEmail" placeholder="{{validEmail ? 'New Student, please enter' : 'Load Student to see athletics'}}">
+    </div>
+    <div class="dropDownMarginTop">
+      <form [formGroup]="housingForm">
+        <label for="housing">Housing Status:</label>
+        <span class="spanSpacer"></span>
+        <select formControlName="housingControl" (change)="setHousing($event.target.value)">
+          <option [value]="status" *ngFor="let status of housingStatus"> {{status}}</option>
+        </select>
+      </form>
+    </div>
+    <div>
+      <span>If applicable, please enter the students honors institute:</span><br>
+      <input class="form-control info" [(ngModel)]="student.studentHonors" [disabled]="!validEmail" placeholder="{{validEmail ? 'New Student, please enter' : 'Load Student to see honors institute'}}">
+    </div>
+    <div>
+      <span>If applicable, please enter the students home country:</span><br>
+      <input class="form-control info" [(ngModel)]="student.internationalStudent" [disabled]="!validEmail" placeholder="{{validEmail ? 'New Student, please enter' : 'Load Student to see home country'}}">
+    </div>
+    <div class="saveButton">
+      <button class="btn btn-lg btn-dark" (click)="saveStudent()" [disabled]="!validEmail">Save Student</button>
+    </div>
+  </div>
+  <div class="itemContainer">
+    Boss
+  </div>
+</div>
+<div class="marginBottom"></div>
+<!--spacer for footer -->
