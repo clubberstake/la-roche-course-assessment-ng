@@ -3,6 +3,7 @@ import { UrlService } from './url-service.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Student } from '../site-admin/classes/student';
+import { StudentSemesterReviewsByCourse } from '../individual-learning-record/classes/student-semester-reviews-by-course';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +33,9 @@ export class StudentService {
     return this.http.delete<Student>(this.urlService.deleteStudentURL(student.id)).subscribe(res => {
       console.log(res);
     });
+  }
+
+  public getStudentSemesterReviews(student: Student): Observable<Array<StudentSemesterReviewsByCourse>> {
+    return this.http.get<Array<StudentSemesterReviewsByCourse>>(this.urlService.getStudentSemesterReviewsURL(student.id));
   }
 }

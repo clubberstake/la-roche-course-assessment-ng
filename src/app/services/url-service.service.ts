@@ -84,4 +84,8 @@ export class UrlService {
   public addFileURL() {
     return this.baseUrl + '/file';
   }
+
+  public getStudentSemesterReviewsURL(id: number): string {
+    return this.baseUrl + '/student/semesterReviews/' + id;
+  }
 }

@@ -3,6 +3,7 @@ import { Student } from '../site-admin/classes/student';
 import { StudentService } from '../services/student.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { FileStorage } from '../course-assessment-worksheet/classes/file-storage';
+import { StudentSemesterReviewsByCourse } from './classes/student-semester-reviews-by-course';
 
 @Component({
   selector: 'app-individual-learning-record',
@@ -24,12 +25,22 @@ export class IndividualLearningRecordComponent implements OnInit {
   housingStatus: Array<String>;
   housingForm: FormGroup;
   selectedHousingStatus: String;
+  semsterReviewsbyCourse: Array<StudentSemesterReviewsByCourse>;
+
+  elements: any = [
+    { id: 1, first: 'Mark', last: 'Otto', handle: '@mdo' },
+    { id: 2, first: 'Jacob', last: 'Thornton', handle: '@fat' },
+    { id: 3, first: 'Larry', last: 'the Bird', handle: '@twitter' },
+  ];
+
+  headElements = ['Course/Sec #', 'Semester & Year', 'Instructor', 'Semester Reviews'];
 
   constructor(private studentService: StudentService, private fb: FormBuilder) {
     this.resetStudent();
     this.semesters = new Array<String>();
     this.years = new Array<String>();
     this.housingStatus = new Array<String>();
+    this.semsterReviewsbyCourse = new Array<StudentSemesterReviewsByCourse>();
   }
 
   private resetStudent() {
@@ -118,6 +129,10 @@ export class IndividualLearningRecordComponent implements OnInit {
             housingControl: this.housingStatus[i]
           });
         }
+        this.studentService.getStudentSemesterReviews(this.student).subscribe((semsterReviewsbyCourse: Array<StudentSemesterReviewsByCourse>) => {
+          this.semsterReviewsbyCourse = semsterReviewsbyCourse;
+          console.log(this.semsterReviewsbyCourse);
+        });
       }
       else {
         this.resetStudent();
