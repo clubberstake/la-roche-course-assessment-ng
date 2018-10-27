@@ -44,7 +44,7 @@ export class IndividualLearningRecordComponent implements OnInit {
   }
 
   private resetStudent() {
-    this.student = new Student(0, '', null, '', '', '', '', '', '', '', '', '', '', '');
+    this.student = new Student(0, '', new FileStorage(0, '', '', ''), '', '', '', '', '', '', '', '', '', '', '');
     this.studentLoaded = false;
   }
 

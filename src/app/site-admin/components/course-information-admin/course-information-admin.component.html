@@ -56,7 +56,7 @@
     </div>
     <div>
       <label class="paddedLabel">Upload Syllabus:</label>
-      <input name="syllabus" type="file" [(ngModel)]="courseInformation.syllabus" (change)="onFileSelected($event)">
+      <input name="syllabus" type="file" (change)="onFileSelected($event)">
     </div>
     <div class="saveButton">
       <button class="btn btn-lg btn-dark" (click)="saveCourseInformation()" [disabled]="!validCourseSection">Save

@@ -43,7 +43,7 @@
       </div>
       <div class="dropDownMarginTop">
         <label class="paddedLabel">Upload Picture:</label>
-        <input name="syllabus" type="file" [(ngModel)]="student.file" (change)="onFileSelected($event)">
+        <input name="syllabus" type="file" (change)="onFileSelected($event)">
       </div>
     </div>
     <div class="searchTitle">
