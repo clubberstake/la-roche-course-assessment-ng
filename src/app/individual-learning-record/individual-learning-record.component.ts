@@ -26,22 +26,16 @@ export class IndividualLearningRecordComponent implements OnInit {
   housingStatus: Array<String>;
   housingForm: FormGroup;
   selectedHousingStatus: String;
-  semsterReviewsbyCourse: Array<StudentSemesterReviewsByCourse>;
+  semesterReviewsbyCourse: Array<StudentSemesterReviewsByCourse>;
 
-  elements: any = [
-    { id: 1, first: 'Mark', last: 'Otto', handle: '@mdo' },
-    { id: 2, first: 'Jacob', last: 'Thornton', handle: '@fat' },
-    { id: 3, first: 'Larry', last: 'the Bird', handle: '@twitter' },
-  ];
-
-  headElements = ['Course/Sec #', 'Semester & Year', 'Instructor', 'Semester Reviews'];
+  headElements = ['Course/Sec #', 'Course Title', 'Semester & Year', 'Instructor', 'Semester Reviews'];
 
   constructor(private studentService: StudentService, private fb: FormBuilder) {
     this.resetStudent();
     this.semesters = new Array<String>();
     this.years = new Array<String>();
     this.housingStatus = new Array<String>();
-    this.semsterReviewsbyCourse = new Array<StudentSemesterReviewsByCourse>();
+    this.semesterReviewsbyCourse = new Array<StudentSemesterReviewsByCourse>();
   }
 
   private resetStudent() {
@@ -86,7 +80,6 @@ export class IndividualLearningRecordComponent implements OnInit {
   loadStudent() {
     this.student.emailAddress = this.studentEmail;
     this.studentService.getStudent(this.student.emailAddress).subscribe((student: Student) => {
-      console.log(student);
       if (student) {
         this.resetStudent();
         this.student = student;
@@ -131,8 +124,7 @@ export class IndividualLearningRecordComponent implements OnInit {
           });
         }
         this.studentService.getStudentSemesterReviews(this.student).subscribe((semsterReviewsbyCourse: Array<StudentSemesterReviewsByCourse>) => {
-          this.semsterReviewsbyCourse = semsterReviewsbyCourse;
-          console.log(this.semsterReviewsbyCourse);
+          this.semesterReviewsbyCourse = semsterReviewsbyCourse;
         });
       }
       else {

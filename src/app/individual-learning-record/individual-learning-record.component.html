@@ -90,11 +90,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let el of elements">
-          <th scope="row">{{el.id}}</th>
-          <td>{{el.first}}</td>
-          <td>{{el.last}}</td>
-          <td>{{el.handle}}</td>
+        <tr *ngFor="let course of semesterReviewsbyCourse">
+          <th scope="row">{{course.courseInformation.courseNumberSection}}</th>
+          <td class="tableWordWrap">{{course.courseInformation.courseTitle}}</td>
+          <td>{{course.courseInformation.semester}} {{course.courseInformation.year}}</td>
+          <td class="tableWordWrap">{{course.courseInformation.instructor.name}}</td>
+          <td>
+              <app-semester-review-modal [semesterReviews]="course.semesterReviews"></app-semester-review-modal>
+          </td>
         </tr>
       </tbody>
     </table>

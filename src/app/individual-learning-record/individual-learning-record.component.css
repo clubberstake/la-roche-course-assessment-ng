@@ -76,3 +76,7 @@
 .dropDownMarginTop {
   margin-top: 10px;
 }
+
+.tableWordWrap {
+  overflow-wrap: break-word;
+}

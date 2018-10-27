@@ -20,6 +20,7 @@ import { StudentAdminComponent } from './site-admin/components/student-admin/stu
 import { InstructorAdminComponent } from './site-admin/components/instructor-admin/instructor-admin.component';
 import { CourseInformationAdminComponent } from './site-admin/components/course-information-admin/course-information-admin.component';
 import { ArchiveCourseComponent } from './site-admin/components/archive-course/archive-course.component';
+import { SemesterReviewModalComponent } from './individual-learning-record/components/semester-review-modal/semester-review-modal.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ArchiveCourseComponent } from './site-admin/components/archive-course/a
     StudentAdminComponent,
     InstructorAdminComponent,
     CourseInformationAdminComponent,
-    ArchiveCourseComponent
+    ArchiveCourseComponent,
+    SemesterReviewModalComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, HttpModule, FormsModule, AppRoutingModule, NgbModule, ReactiveFormsModule
