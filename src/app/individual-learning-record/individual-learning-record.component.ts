@@ -4,6 +4,7 @@ import { StudentService } from '../services/student.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { FileStorage } from '../course-assessment-worksheet/classes/file-storage';
 import { StudentSemesterReviewsByCourse } from './classes/student-semester-reviews-by-course';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-individual-learning-record',
@@ -148,6 +149,8 @@ export class IndividualLearningRecordComponent implements OnInit {
     console.log(this.student);
     this.studentService.saveStudent(this.student);
     this.validEmail = false;
+
+    swal("Student Save succesful!", "Press OK to proceed", "success");
   }
 
   setYear(value: any) {
