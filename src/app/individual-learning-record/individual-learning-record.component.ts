@@ -161,6 +161,8 @@ export class IndividualLearningRecordComponent implements OnInit {
 
     var selectedPhoto = <File>event.target.files[0];
 
+   
+
     var fileReader = new FileReader();
     var fileStorage = new FileStorage(0, "", "", "");
     if (fileReader && selectedPhoto) {
@@ -172,8 +174,10 @@ export class IndividualLearningRecordComponent implements OnInit {
 
       fileReader.readAsDataURL(selectedPhoto);
       this.sleep(300).then(() => {
+        console.log(fileReader);
+        console.log(fileStorage);
         this.student.file = {
-          id: this.student.file.id,
+          id: (this.student && this.student.file && this.student.file.id) ? this.student.file.id : 0,
           fileContent: fileStorage.fileContent,
           fileName: fileStorage.fileName,
           fileType: fileStorage.fileType
